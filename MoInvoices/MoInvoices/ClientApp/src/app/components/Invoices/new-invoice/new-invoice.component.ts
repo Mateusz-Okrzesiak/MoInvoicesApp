@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewInvoiceComponent implements OnInit {
 
+   selected: Number = 1;
+
   constructor() { }
 
   ngOnInit(): void {

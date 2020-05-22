@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './components/app.component';
@@ -14,13 +13,20 @@ import {
   MatMenuModule,
   MatToolbarModule,
   MatIconModule,
-  MatCardModule
+  MatCardModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatToolbarRow,
+  MatGridList,
+  MatGridListModule
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { InvoicesListComponent } from './components/Invoices/invoices-list/invoices-list.component';
 import { FetchDataComponent } from './components/fetch-data/fetch-data.component';
 import { NewInvoiceComponent } from './components/Invoices/new-invoice/new-invoice.component';
-import { CommonModule } from '@angular/common';
 import { CustomersComponent } from './components/customers/customers.component';
 
 
@@ -31,7 +37,8 @@ import { CustomersComponent } from './components/customers/customers.component';
     HomeComponent,
     FetchDataComponent,
     NewInvoiceComponent,
-    InvoicesListComponent
+    InvoicesListComponent,
+    CustomersComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -43,18 +50,20 @@ import { CustomersComponent } from './components/customers/customers.component';
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'customer-list', component: CustomersComponent },
-      { path: 'new-invoice', component: NewInvoiceComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-    ])
+    AppRoutingModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatGridListModule,
   ], exports: [
     MatButtonModule,
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

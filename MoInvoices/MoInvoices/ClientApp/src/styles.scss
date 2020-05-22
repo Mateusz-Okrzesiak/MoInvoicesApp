@@ -1,5 +1,6 @@
-@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+
 @import '~@angular/material/prebuilt-themes/indigo-pink.css'; 
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 
 // Imports functions, variables, and mixins that are needed by other Bootstrap files
 @import "variables";
@@ -13,13 +14,24 @@
 
 body {
   margin: 0;
-  font-family: Roboto, sans-serif;
+  font-family: "Signika",Helvetica,Arial,sans-serif;
 }
 
 mat-card {
   max-width: 80%;
   margin: 2em auto;
   text-align: center;
+}
+.mat-form-field-flex {
+  background-color: #efefef;
+}
+
+.input.mat-input-element { 
+  padding-left: 10px;
+}
+
+.mat-toolbar {
+  background-color: #efefef;
 }
 
 mat-toolbar-row {
@@ -45,4 +57,8 @@ code {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
+}
+
+mat-form-field {
+  width: 100%;
 }
