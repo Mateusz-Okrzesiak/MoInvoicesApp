@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MatTableModule } from '@angular/material/table';
 import { AppComponent } from './components/app.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { HomeComponent } from './components/home/home.component';
@@ -58,6 +58,7 @@ import { CustomersComponent } from './components/customers/customers.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatGridListModule,
+    MatTableModule
   ], exports: [
     MatButtonModule,
     MatMenuModule,

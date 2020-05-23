@@ -49,6 +49,21 @@ a {
   color: #0366d6;
 }
 
+table {
+  width: 100%;
+  th{
+    width: 25px !important;
+  }
+  thead {
+    background: #1670c4 !important;
+    width: 25px !important;
+  }
+  .mat-header-cell {
+    color: white;
+    font-size: 1rem;
+  }
+}
+
 code {
   color: #e01a76;
 }
