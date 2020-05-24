@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MatTableModule } from '@angular/material/table';
 import { AppComponent } from './components/app.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { HomeComponent } from './components/home/home.component';
@@ -28,6 +28,8 @@ import { InvoicesListComponent } from './components/Invoices/invoices-list/invoi
 import { FetchDataComponent } from './components/fetch-data/fetch-data.component';
 import { NewInvoiceComponent } from './components/Invoices/new-invoice/new-invoice.component';
 import { CustomersComponent } from './components/customers/customers.component';
+import { Config } from 'protractor';
+import { InvoiceService } from './services/invoice.service';
 
 
 @NgModule({
@@ -58,6 +60,8 @@ import { CustomersComponent } from './components/customers/customers.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatGridListModule,
+    MatTableModule,
+    HttpClientModule
   ], exports: [
     MatButtonModule,
     MatMenuModule,
@@ -65,7 +69,7 @@ import { CustomersComponent } from './components/customers/customers.component';
     MatIconModule,
     MatCardModule,
   ],
-  providers: [],
+  providers: [InvoiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

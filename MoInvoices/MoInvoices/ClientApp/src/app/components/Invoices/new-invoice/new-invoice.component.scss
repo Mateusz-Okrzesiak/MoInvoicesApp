@@ -1,5 +1,28 @@
+$primary-color: #3f51b5;
 
 .newInvoiceSection {
     background-color: white;
     padding-top: 30px;
+}
+
+th, td {
+    width: 25px !important;
+    width: 20px;
+    text-align: center;
+    mat-form-field {
+        padding-right: 10px;
+        padding-top: 10px ;
+        width: 100%;
+    }
+  }
+
+th.mat-header-cell {
+    text-align: center;
+}
+
+.summary {
+    padding-top: 10px;
+}
+.line-height {
+    line-height: 43px;
 }
