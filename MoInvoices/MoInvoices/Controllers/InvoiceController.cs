@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MoInvoices.Models;
+using MoInvoices.Pages;
 
 namespace MoInvoices.Controllers
 {
@@ -11,6 +12,12 @@ namespace MoInvoices.Controllers
     [ApiController]
     public class InvoiceController : ControllerBase
     {
+        private readonly MoInvoiceContext _context;
+        public InvoiceController(MoInvoiceContext context)
+        {
+            _context = context;
+        }
+
         // GET: api/<InvoiceController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -29,7 +36,13 @@ namespace MoInvoices.Controllers
         [HttpPost]
         public void Post([FromBody] Invoice invoice)
         {
-            var test = invoice;
+            _context.Invoice.Add(invoice);
+            _context.Contractor.Add(invoice.Contractor);
+            _context.Contractor.Add(invoice.Vendor);
+            
+            foreach (var row in invoice.InvoiceRowServices)
+                _context.InvoiceRowService.Add(row);
+
         }
 
         // PUT api/<InvoiceController>/5
