@@ -3,6 +3,10 @@ import { MatTable } from '@angular/material/table';
 import { BehaviorSubject } from 'rxjs';
 import { DecimalPipe } from '@angular/common';
 import { element } from 'protractor';
+import { newArray } from '@angular/compiler/src/util';
+import { Service, Invoice, Contractor } from '../../models/invoice.model';
+
+
 
 @Component({
   selector: 'app-new-invoice',
@@ -10,25 +14,28 @@ import { element } from 'protractor';
   styleUrls: ['./new-invoice.component.scss']
 })
 
-
 export class NewInvoiceComponent implements OnInit {
-
-
 
   @ViewChild(MatTable) table: MatTable<any>;
   displayedColumns: string[] = ['serviceName', 'JM', 'quantity', 'netPrice', 'netWorth', 'vatRate', 'vatAmount', 'grossValue'];
-  dataSource: Service[] = new Array();
-  sumGrossValue = 0.00;
-  sumNetValue = 0.00;
+
+  contractor: Contractor = {name: '', nip: '', city: '', postalCode: '', street: ''};
+  vendor: Contractor = {name: '', nip: '', city: '', postalCode: '', street: ''};
+  invoice: Invoice;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.dataSource.push(EMPTY_ROW);
+    this.invoice = new Invoice(-1, '', '', new Date(), new Date(), '', new Array(), this.contractor, this.vendor, false, 0.00, 0.00);
+    this.invoice.service.push(EMPTY_ROW);
+  }
+
+  save() {
+
   }
 
   addNewServicePosition() {
-    this.dataSource.push({ serviceName: '', JM: 'szt.', quantity: 1, netPrice: 0.00,
+    this.invoice.service.push({ serviceName: '', JM: 'szt.', quantity: 1, netPrice: 0.00,
     netWorth: 0.00, vatRate: '23%', vatAmount: 0, grossValue: 0.00 });
     this.table.renderRows();
   }
@@ -60,27 +67,17 @@ export class NewInvoiceComponent implements OnInit {
   recalculateInvoice() {
     let sumGross = 0;
     let sumNet = 0;
-    this.dataSource.forEach(function(record) {
+    this.invoice.service.forEach(function(record) {
       sumGross += record.grossValue;
       sumNet = record.netWorth;
     });
-    this.sumGrossValue = sumGross;
-    this.sumNetValue = sumNet;
+    this.invoice.sumGrossValue = sumGross;
+    this.invoice.sumNetValue = sumNet;
   }
 }
 
 const EMPTY_ROW: Service = { serviceName: '', JM: 'szt.', quantity: 1, netPrice: 0.00,
 netWorth: 0.00, vatRate: '23%', vatAmount: 0, grossValue: 0.00 };
 
-export interface Service {
-  serviceName: string;
-  JM: string;
-  quantity: number;
-  netPrice: number;
-  netWorth: number;
-  vatRate: string;
-  vatAmount: number;
-  grossValue: number;
-}
 
 

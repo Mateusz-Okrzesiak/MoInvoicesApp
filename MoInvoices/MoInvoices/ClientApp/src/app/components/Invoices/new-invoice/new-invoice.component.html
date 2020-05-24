@@ -17,13 +17,13 @@
             <div class="col-md-4 col-sm">         
                 <mat-form-field class="full-width">
                     <mat-label>Numer</mat-label>
-                    <input matInput placeholder="Numer dokumentu" value="01/05/2020">
+                    <input matInput placeholder="Numer dokumentu" value="01/05/2020" [(ngModel)]="invoice.invoiceNumber">
                 </mat-form-field>
             </div>
             <div class="col-md-4 col-sm">      
                 <mat-form-field class="full-width">
                     <mat-label>Data wystawienia</mat-label>
-                    <input matInput [matDatepicker]="picker">
+                    <input matInput [matDatepicker]="picker" [(ngModel)]="invoice.issueDate">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
@@ -33,13 +33,13 @@
             <div class="col-md-4 col-sm">    
                 <mat-form-field class="full-width">
                 <mat-label>Miejsce wystawienia</mat-label>
-                <input matInput placeholder="Miejscowość">
+                <input matInput placeholder="Miejscowość" [(ngModel)]="invoice.cityOfIssue">
                 </mat-form-field>
             </div>
             <div class="col-md-4 col-sm">
                 <mat-form-field>
                     <mat-label>Data sprzedaży</mat-label>
-                    <input matInput [matDatepicker]="FinishServiceDate">
+                    <input matInput [matDatepicker]="FinishServiceDate" [(ngModel)]="invoice.sellData">
                     <mat-datepicker-toggle matSuffix [for]="FinishServiceDate"></mat-datepicker-toggle>
                     <mat-datepicker #FinishServiceDate></mat-datepicker>
                 </mat-form-field>
@@ -58,28 +58,28 @@
                 <div class="row">
                     <mat-label class="col-lg-3 col-sm-4 line-height">Sprzedawca</mat-label>
                     <mat-form-field class="col-md-9 col-sm">              
-                        <textarea cdkAutosizeMinRows="1" cdkTextareaAutosize matInput ></textarea>
+                        <textarea cdkAutosizeMinRows="1" cdkTextareaAutosize matInput [(ngModel)]="invoice.vendor.name" ></textarea>
                     </mat-form-field>
                 </div>
                 <div class="row">
                     <mat-label class="col-md-3 col-sm line-height">NIP</mat-label>
                     <mat-form-field class="col-md-9 col-sm">              
-                        <input matInput >
+                        <input matInput [(ngModel)]="invoice.vendor.nip">
                     </mat-form-field>
                 </div>
                 <div class="row">
                     <mat-label class="col-md-3 col-sm line-height">Ulica</mat-label>
                     <mat-form-field class="col-md-9 col-sm">              
-                        <input matInput >
+                        <input matInput [(ngModel)]="invoice.vendor.street">
                     </mat-form-field>
                 </div>
                 <div class="row">
                     <mat-label class="col-md-3 col-sm line-height">Miasto / kod</mat-label>
                     <mat-form-field class="col-md-6 col-sm">
-                        <input matInput>
+                        <input matInput [(ngModel)]="invoice.vendor.city">
                     </mat-form-field>
                     <mat-form-field class="col-md-3 col-sm">
-                        <input matInput>
+                        <input matInput [(ngModel)]="invoice.vendor.postalCode">
                     </mat-form-field>
                 </div>
             </div>
@@ -95,28 +95,28 @@
                 <div class="row">
                     <mat-label class="col-lg-3 col-sm-4 line-height">Nabywca</mat-label>
                     <mat-form-field class="col-md-9 col-sm">              
-                        <textarea cdkAutosizeMinRows="1" cdkTextareaAutosize matInput ></textarea>
+                        <textarea cdkAutosizeMinRows="1" cdkTextareaAutosize matInput [(ngModel)]="invoice.purchaser.name"></textarea>
                     </mat-form-field>
                 </div>
                 <div class="row">
                     <mat-label class="col-md-3 col-sm line-height">NIP</mat-label>
                     <mat-form-field class="col-md-9 col-sm">              
-                        <input matInput >
+                        <input matInput [(ngModel)]="invoice.purchaser.nip">
                     </mat-form-field>
                 </div>
                 <div class="row">
                     <mat-label class="col-md-3 col-sm line-height">Ulica</mat-label>
                     <mat-form-field class="col-md-9 col-sm">              
-                        <input matInput >
+                        <input matInput [(ngModel)]="invoice.purchaser.street">
                     </mat-form-field>
                 </div>
                 <div class="row">
                     <mat-label class="col-md-3 col-sm line-height">Miasto / kod</mat-label>
                     <mat-form-field class="col-md-6 col-sm">
-                        <input matInput>
+                        <input matInput [(ngModel)]="invoice.purchaser.city" >
                     </mat-form-field>
                     <mat-form-field class="col-md-3 col-sm">
-                        <input matInput>
+                        <input matInput [(ngModel)]="invoice.purchaser.postalCode">
                     </mat-form-field>
                 </div>
             </div>
@@ -124,7 +124,7 @@
     </div>
     <div class="container col-md-8 col-sm-12">   
         <div class="row">
-            <table mat-table [dataSource]="dataSource" class="col-8">
+            <table mat-table [dataSource]="invoice.service" class="col-8">
                
                 <ng-container matColumnDef="serviceName">
                     <th mat-header-cell *matHeaderCellDef> Nazwa towaru lub usługi </th>
@@ -206,19 +206,19 @@
             <div class="row summary">
                 <mat-label class="col-md-2 col-sm line-height">Razem brutto</mat-label>
                 <mat-form-field class="col-md-2 col-sm">              
-                    <input matInput readonly type="number" [(ngModel)]="sumGrossValue"> 
+                    <input matInput readonly type="number" [(ngModel)]="invoice.sumGrossValue"> 
                 </mat-form-field>    
             </div>  
             <div class="row summary">
                 <mat-label class="col-md-2 col-sm line-height">Razem netto</mat-label>
                 <mat-form-field class="col-md-2 col-sm">              
-                    <input matInput readonly type="number" [(ngModel)]="sumNetValue"> 
+                    <input matInput readonly type="number" [(ngModel)]="invoice.sumNetValue"> 
                 </mat-form-field>    
             </div>  
         </section>  
         <div class="row">
             <div class="col-md-2">        
-                <button mat-raised-button color="warn">Zapisz</button>
+                <button mat-raised-button color="warn" (click)=save()>Zapisz</button>
             </div>     
             <div class="col-md-2">   
                 <button mat-raised-button color="warn">Pobierz</button>
