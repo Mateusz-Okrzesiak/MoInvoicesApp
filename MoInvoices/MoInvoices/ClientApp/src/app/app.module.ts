@@ -28,6 +28,8 @@ import { InvoicesListComponent } from './components/Invoices/invoices-list/invoi
 import { FetchDataComponent } from './components/fetch-data/fetch-data.component';
 import { NewInvoiceComponent } from './components/Invoices/new-invoice/new-invoice.component';
 import { CustomersComponent } from './components/customers/customers.component';
+import { Config } from 'protractor';
+import { InvoiceService } from './services/invoice.service';
 
 
 @NgModule({
@@ -58,7 +60,8 @@ import { CustomersComponent } from './components/customers/customers.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatGridListModule,
-    MatTableModule
+    MatTableModule,
+    HttpClientModule
   ], exports: [
     MatButtonModule,
     MatMenuModule,
@@ -66,7 +69,7 @@ import { CustomersComponent } from './components/customers/customers.component';
     MatIconModule,
     MatCardModule,
   ],
-  providers: [],
+  providers: [InvoiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

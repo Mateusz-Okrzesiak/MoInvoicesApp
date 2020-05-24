@@ -1,6 +1,4 @@
 
-
-
   export class Invoice {
     invoiceID: number;
     documentType: string;
@@ -8,7 +6,7 @@
     sellData: Date;
     issueDate: Date;
     cityOfIssue: string;
-    service: Service [];
+    service: InvoiceRowService[];
     purchaser: Contractor;
     vendor: Contractor;
     isPayed: Boolean;
@@ -16,8 +14,8 @@
     sumNetValue: number;
 
     constructor(invoiceID: number, documentType: string, invoiceNumber: string,
-                sellData: Date, issueDate: Date, cityOfIssue: string, service: Service [], purchaser: Contractor, vendor: Contractor,
-                 isPayed: Boolean, sumGrossValue: number, sumNetValue: number) {
+                sellData: Date, issueDate: Date, cityOfIssue: string, service: InvoiceRowService [],
+                 purchaser: Contractor, vendor: Contractor, isPayed: Boolean, sumGrossValue: number, sumNetValue: number) {
                    this.invoiceID = invoiceID;
                    this.documentType = documentType;
                    this.invoiceNumber = invoiceNumber;
@@ -41,7 +39,7 @@
     postalCode: string;
   }
 
-  export interface Service {
+  export interface InvoiceRowService {
     serviceName: string;
     JM: string;
     quantity: number;
@@ -51,3 +49,5 @@
     vatAmount: number;
     grossValue: number;
   }
+
+

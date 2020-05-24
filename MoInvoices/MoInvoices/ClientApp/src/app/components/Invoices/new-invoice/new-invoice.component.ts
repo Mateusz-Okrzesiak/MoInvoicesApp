@@ -4,9 +4,8 @@ import { BehaviorSubject } from 'rxjs';
 import { DecimalPipe } from '@angular/common';
 import { element } from 'protractor';
 import { newArray } from '@angular/compiler/src/util';
-import { Service, Invoice, Contractor } from '../../models/invoice.model';
-
-
+import { Invoice, Contractor, InvoiceRowService } from '../../../models/invoice.model';
+import { InvoiceService } from 'src/app/services/invoice.service';
 
 @Component({
   selector: 'app-new-invoice',
@@ -23,7 +22,7 @@ export class NewInvoiceComponent implements OnInit {
   vendor: Contractor = {name: '', nip: '', city: '', postalCode: '', street: ''};
   invoice: Invoice;
 
-  constructor() { }
+  constructor(private invoiceService: InvoiceService) { }
 
   ngOnInit(): void {
     this.invoice = new Invoice(-1, '', '', new Date(), new Date(), '', new Array(), this.contractor, this.vendor, false, 0.00, 0.00);
@@ -31,7 +30,7 @@ export class NewInvoiceComponent implements OnInit {
   }
 
   save() {
-
+    this.invoiceService.createInvoice(this.invoice);
   }
 
   addNewServicePosition() {
@@ -40,21 +39,21 @@ export class NewInvoiceComponent implements OnInit {
     this.table.renderRows();
   }
 
-  updateServiceName(el: Service, serviceName: string) {
+  updateServiceName(el: InvoiceRowService, serviceName: string) {
     el.serviceName = serviceName;
   }
 
-  updateQuantity(el: Service, quantity: number) {
+  updateQuantity(el: InvoiceRowService, quantity: number) {
     el.quantity = quantity;
     el = this.recalculateService(el);
   }
 
-  updateNetPrice(el: Service, netPrice: number) {
+  updateNetPrice(el: InvoiceRowService, netPrice: number) {
     el.netPrice = netPrice;
     el = this.recalculateService(el);
   }
 
-  recalculateService(service: Service): Service {
+  recalculateService(service: InvoiceRowService): InvoiceRowService {
     service.netWorth = service.netPrice * service.quantity;
     service.grossValue = service.netPrice * 1.23 * service.quantity;
     service.vatAmount = service.netPrice * 0.23 * service.quantity;
@@ -76,7 +75,7 @@ export class NewInvoiceComponent implements OnInit {
   }
 }
 
-const EMPTY_ROW: Service = { serviceName: '', JM: 'szt.', quantity: 1, netPrice: 0.00,
+const EMPTY_ROW: InvoiceRowService = { serviceName: '', JM: 'szt.', quantity: 1, netPrice: 0.00,
 netWorth: 0.00, vatRate: '23%', vatAmount: 0, grossValue: 0.00 };
 
 
