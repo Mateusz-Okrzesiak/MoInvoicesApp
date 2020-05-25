@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { StringifyOptions } from 'querystring';
+import { InvoiceService } from 'src/app/services/invoice.service';
+import { InvoiceList } from 'src/app/models/invoice.model';
 
 @Component({
   selector: 'app-invoices-list',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InvoicesListComponent implements OnInit {
 
-  constructor() { }
+  displayedColumns: string[] = ['id', 'documentType', 'invoiceNumber', 'purchaserName', 'issueDate', 'grossValue'];
+  invoiceList: InvoiceList[];
+
+
+  constructor(private invoiceService: InvoiceService) { }
 
   ngOnInit(): void {
+    this.invoiceService.GetAllUserInvoices().subscribe(response => {
+      this.invoiceList = response;
+    });
   }
-
 }
+
+

@@ -12,6 +12,7 @@
     isPayed: Boolean;
     sumGrossValue: number;
     sumNetValue: number;
+    userID: number;
 
     constructor(invoiceID: number, documentType: string, invoiceNumber: string,
                 sellData: Date, issueDate: Date, cityOfIssue: string, service: InvoiceRowService [],
@@ -28,10 +29,12 @@
                    this.isPayed = isPayed;
                    this.sumGrossValue = sumGrossValue;
                    this.sumNetValue = sumNetValue;
+                   this.userID = this.userID;
                  }
   }
 
   export interface Contractor {
+    contractorID: number;
     name: string;
     nip: string;
     street: string;
@@ -40,6 +43,7 @@
   }
 
   export interface InvoiceRowService {
+    invoiceRowServiceID: number;
     serviceName: string;
     JM: string;
     quantity: number;
@@ -48,6 +52,16 @@
     vatRate: string;
     vatAmount: number;
     grossValue: number;
+    invoiceID: number;
   }
+
+  export interface InvoiceList {
+  invoiceID: number;
+  documentType: string;
+  invoiceNumber: string;
+  purchaserName: string;
+  issueDate: Date;
+  grossValue: number;
+}
 
 

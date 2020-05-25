@@ -6,6 +6,7 @@ import { element } from 'protractor';
 import { newArray } from '@angular/compiler/src/util';
 import { Invoice, Contractor, InvoiceRowService } from '../../../models/invoice.model';
 import { InvoiceService } from 'src/app/services/invoice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-invoice',
@@ -18,24 +19,25 @@ export class NewInvoiceComponent implements OnInit {
   @ViewChild(MatTable) table: MatTable<any>;
   displayedColumns: string[] = ['serviceName', 'JM', 'quantity', 'netPrice', 'netWorth', 'vatRate', 'vatAmount', 'grossValue'];
 
-  contractor: Contractor = {name: '', nip: '', city: '', postalCode: '', street: ''};
-  vendor: Contractor = {name: '', nip: '', city: '', postalCode: '', street: ''};
+  contractor: Contractor = { contractorID: -1, name: '', nip: '', city: '', postalCode: '', street: ''};
+  vendor: Contractor = { contractorID: -1, name: '', nip: '', city: '', postalCode: '', street: ''};
   invoice: Invoice;
 
-  constructor(private invoiceService: InvoiceService) { }
+  constructor(private invoiceService: InvoiceService, private router: Router) { }
 
   ngOnInit(): void {
-    this.invoice = new Invoice(-1, '', '', new Date(), new Date(), '', new Array(), this.contractor, this.vendor, false, 0.00, 0.00);
+    this.invoice = new Invoice( -1, '', '', new Date(), new Date(), '', new Array(), this.contractor, this.vendor, false, 0.00, 0.00);
     this.invoice.service.push(EMPTY_ROW);
   }
 
-  save() {
+  createInvoice() {
     this.invoiceService.createInvoice(this.invoice);
+    this.router.navigateByUrl('/home');
   }
 
   addNewServicePosition() {
-    this.invoice.service.push({ serviceName: '', JM: 'szt.', quantity: 1, netPrice: 0.00,
-    netWorth: 0.00, vatRate: '23%', vatAmount: 0, grossValue: 0.00 });
+    this.invoice.service.push({ invoiceID: -1, serviceName: '', JM: 'szt.', quantity: 1, netPrice: 0.00,
+    netWorth: 0.00, vatRate: '23%', vatAmount: 0, grossValue: 0.00 , invoiceRowServiceID: -1});
     this.table.renderRows();
   }
 
@@ -44,12 +46,13 @@ export class NewInvoiceComponent implements OnInit {
   }
 
   updateQuantity(el: InvoiceRowService, quantity: number) {
-    el.quantity = quantity;
+    el.quantity = +quantity;
     el = this.recalculateService(el);
   }
 
   updateNetPrice(el: InvoiceRowService, netPrice: number) {
-    el.netPrice = netPrice;
+
+    el.netPrice = +netPrice;
     el = this.recalculateService(el);
   }
 
@@ -75,8 +78,8 @@ export class NewInvoiceComponent implements OnInit {
   }
 }
 
-const EMPTY_ROW: InvoiceRowService = { serviceName: '', JM: 'szt.', quantity: 1, netPrice: 0.00,
-netWorth: 0.00, vatRate: '23%', vatAmount: 0, grossValue: 0.00 };
+const EMPTY_ROW: InvoiceRowService = { invoiceRowServiceID: -1, serviceName: '', JM: 'szt.', quantity: 1, netPrice: 0.00,
+netWorth: 0.00, vatRate: '23%', vatAmount: 0, grossValue: 0.00 , invoiceID: -1};
 
 
 
