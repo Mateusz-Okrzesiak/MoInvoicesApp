@@ -21,12 +21,6 @@ namespace MoInvoices.Models
         public DateTime IssueDate { get; set; }
         [Required]
         public string CityOfIssue { get; set; }
-        [NotMapped]
-        public InvoiceRowService[] Service { get; set; }
-        [NotMapped]
-        public Contractor Purchaser { get; set; }
-        [NotMapped]
-        public Contractor Vendor { get; set; }
         [Required]
         public bool IsPayed { get; set; }
         [Required]

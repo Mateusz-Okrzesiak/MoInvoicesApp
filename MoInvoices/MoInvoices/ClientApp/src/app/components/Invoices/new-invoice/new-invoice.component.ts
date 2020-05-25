@@ -6,6 +6,7 @@ import { element } from 'protractor';
 import { newArray } from '@angular/compiler/src/util';
 import { Invoice, Contractor, InvoiceRowService } from '../../../models/invoice.model';
 import { InvoiceService } from 'src/app/services/invoice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-invoice',
@@ -22,15 +23,16 @@ export class NewInvoiceComponent implements OnInit {
   vendor: Contractor = { contractorID: -1, name: '', nip: '', city: '', postalCode: '', street: ''};
   invoice: Invoice;
 
-  constructor(private invoiceService: InvoiceService) { }
+  constructor(private invoiceService: InvoiceService, private router: Router) { }
 
   ngOnInit(): void {
     this.invoice = new Invoice( -1, '', '', new Date(), new Date(), '', new Array(), this.contractor, this.vendor, false, 0.00, 0.00);
     this.invoice.service.push(EMPTY_ROW);
   }
 
-  save() {
+  createInvoice() {
     this.invoiceService.createInvoice(this.invoice);
+    this.router.navigateByUrl('/home');
   }
 
   addNewServicePosition() {
@@ -44,12 +46,13 @@ export class NewInvoiceComponent implements OnInit {
   }
 
   updateQuantity(el: InvoiceRowService, quantity: number) {
-    el.quantity = quantity;
+    el.quantity = +quantity;
     el = this.recalculateService(el);
   }
 
   updateNetPrice(el: InvoiceRowService, netPrice: number) {
-    el.netPrice = netPrice;
+
+    el.netPrice = +netPrice;
     el = this.recalculateService(el);
   }
 

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MoInvoices.Pages;
 
 namespace MoInvoices.Migrations
 {
     [DbContext(typeof(MoInvoiceContext))]
-    partial class MoInvoiceContextModelSnapshot : ModelSnapshot
+    [Migration("20200525003841_add contractortypeID to invoice")]
+    partial class addcontractortypeIDtoinvoice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

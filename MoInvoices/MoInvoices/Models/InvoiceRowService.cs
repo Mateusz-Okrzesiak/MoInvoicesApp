@@ -16,7 +16,7 @@ namespace MoInvoices.Models
         [Required]
         public string JM { get; set; }
         [Required]
-        public int Quantiy { get; set; } 
+        public int Quantity { get; set; }
         [Required]
         public decimal NetPrice { get; set; }
         [Required]
@@ -29,7 +29,7 @@ namespace MoInvoices.Models
         public decimal GrossValue { get; set; }
 
         [ForeignKey("Invoice")]
-        public int InvoiceId { get; set; }
+        public int InvoiceID { get; set; }
 
         public virtual Invoice Invoice { get; set; }
 

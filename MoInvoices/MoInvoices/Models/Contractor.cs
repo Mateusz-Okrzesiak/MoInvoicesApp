@@ -9,8 +9,7 @@ namespace MoInvoices.Models
 {
     public class Contractor
     {
-        [Key]
-        [ForeignKey("Invoice")]
+        [Key]        
         public int ContractorID { get; set; }
         [Required]
         public string Name { get; set; }
@@ -22,7 +21,11 @@ namespace MoInvoices.Models
         public string City { get; set; }
         [Required]
         public string PostalCode { get; set; }
+        [Required]
+        public int ContractorTypeID { get; set; }
 
+        [ForeignKey("Invoice")]
+        public int InvoiceID { get; set; }
         public virtual Invoice Invoice { get; set; }
     }
 }
