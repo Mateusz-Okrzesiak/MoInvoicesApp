@@ -15,6 +15,6 @@ export class InvoiceService {
 
   GetAllUserInvoices() {
     let userID = 1;
-    return this.httpClient.get<InvoiceList[]>(this.baseUrl + 'InvoiceList/' + userID);
+    return this.httpClient.get<InvoiceList[]>(this.baseUrl + `Invoice/AllUserInvoices/${userID}`);
   }
 }
