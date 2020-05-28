@@ -1,0 +1,8 @@
+C:\Users\Mateusz\Desktop\Projekty\GitHub\MoInvoicesApp\MoInvoices\MoInvoices.Data\bin\Debug\netcoreapp3.1\MoInvoices.Data.deps.json
+C:\Users\Mateusz\Desktop\Projekty\GitHub\MoInvoicesApp\MoInvoices\MoInvoices.Data\bin\Debug\netcoreapp3.1\MoInvoices.Data.dll
+C:\Users\Mateusz\Desktop\Projekty\GitHub\MoInvoicesApp\MoInvoices\MoInvoices.Data\bin\Debug\netcoreapp3.1\MoInvoices.Data.pdb
+C:\Users\Mateusz\Desktop\Projekty\GitHub\MoInvoicesApp\MoInvoices\MoInvoices.Data\obj\Debug\netcoreapp3.1\MoInvoices.Data.AssemblyInfoInputs.cache
+C:\Users\Mateusz\Desktop\Projekty\GitHub\MoInvoicesApp\MoInvoices\MoInvoices.Data\obj\Debug\netcoreapp3.1\MoInvoices.Data.AssemblyInfo.cs
+C:\Users\Mateusz\Desktop\Projekty\GitHub\MoInvoicesApp\MoInvoices\MoInvoices.Data\obj\Debug\netcoreapp3.1\MoInvoices.Data.csproj.CoreCompileInputs.cache
+C:\Users\Mateusz\Desktop\Projekty\GitHub\MoInvoicesApp\MoInvoices\MoInvoices.Data\obj\Debug\netcoreapp3.1\MoInvoices.Data.dll
+C:\Users\Mateusz\Desktop\Projekty\GitHub\MoInvoicesApp\MoInvoices\MoInvoices.Data\obj\Debug\netcoreapp3.1\MoInvoices.Data.pdb

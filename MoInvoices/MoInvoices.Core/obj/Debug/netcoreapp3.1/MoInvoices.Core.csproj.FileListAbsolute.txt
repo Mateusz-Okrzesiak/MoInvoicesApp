@@ -1,0 +1,15 @@
+C:\Users\Mateusz\Desktop\Projekty\GitHub\MoInvoicesApp\MoInvoices\MoInvoices.Core\obj\Debug\netcoreapp3.1\MoInvoices.Core.csprojAssemblyReference.cache
+C:\Users\Mateusz\Desktop\Projekty\GitHub\MoInvoicesApp\MoInvoices\MoInvoices.Core\obj\Debug\netcoreapp3.1\MoInvoices.Core.AssemblyInfoInputs.cache
+C:\Users\Mateusz\Desktop\Projekty\GitHub\MoInvoicesApp\MoInvoices\MoInvoices.Core\obj\Debug\netcoreapp3.1\MoInvoices.Core.AssemblyInfo.cs
+C:\Users\Mateusz\Desktop\Projekty\GitHub\MoInvoicesApp\MoInvoices\MoInvoices.Core\obj\Debug\netcoreapp3.1\MoInvoices.Core.csproj.CoreCompileInputs.cache
+C:\Users\Mateusz\Desktop\Projekty\GitHub\MoInvoicesApp\MoInvoices\MoInvoices.Core\bin\Debug\netcoreapp3.1\MoInvoices.Core.deps.json
+C:\Users\Mateusz\Desktop\Projekty\GitHub\MoInvoicesApp\MoInvoices\MoInvoices.Core\bin\Debug\netcoreapp3.1\MoInvoices.Core.runtimeconfig.json
+C:\Users\Mateusz\Desktop\Projekty\GitHub\MoInvoicesApp\MoInvoices\MoInvoices.Core\bin\Debug\netcoreapp3.1\MoInvoices.Core.runtimeconfig.dev.json
+C:\Users\Mateusz\Desktop\Projekty\GitHub\MoInvoicesApp\MoInvoices\MoInvoices.Core\bin\Debug\netcoreapp3.1\MoInvoices.Core.dll
+C:\Users\Mateusz\Desktop\Projekty\GitHub\MoInvoicesApp\MoInvoices\MoInvoices.Core\bin\Debug\netcoreapp3.1\MoInvoices.Core.pdb
+C:\Users\Mateusz\Desktop\Projekty\GitHub\MoInvoicesApp\MoInvoices\MoInvoices.Core\bin\Debug\netcoreapp3.1\MoInvoices.Data.dll
+C:\Users\Mateusz\Desktop\Projekty\GitHub\MoInvoicesApp\MoInvoices\MoInvoices.Core\bin\Debug\netcoreapp3.1\MoInvoices.Data.pdb
+C:\Users\Mateusz\Desktop\Projekty\GitHub\MoInvoicesApp\MoInvoices\MoInvoices.Core\obj\Debug\netcoreapp3.1\MoInvoices.Core.csproj.CopyComplete
+C:\Users\Mateusz\Desktop\Projekty\GitHub\MoInvoicesApp\MoInvoices\MoInvoices.Core\obj\Debug\netcoreapp3.1\MoInvoices.Core.dll
+C:\Users\Mateusz\Desktop\Projekty\GitHub\MoInvoicesApp\MoInvoices\MoInvoices.Core\obj\Debug\netcoreapp3.1\MoInvoices.Core.pdb
+C:\Users\Mateusz\Desktop\Projekty\GitHub\MoInvoicesApp\MoInvoices\MoInvoices.Core\obj\Debug\netcoreapp3.1\MoInvoices.Core.genruntimeconfig.cache

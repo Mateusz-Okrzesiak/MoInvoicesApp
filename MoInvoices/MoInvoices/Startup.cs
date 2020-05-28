@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MoInvoices.Core;
 using MoInvoices.Pages;
 
 namespace MoInvoices
@@ -28,6 +29,7 @@ namespace MoInvoices
             options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
 
             services.AddAutoMapper(typeof(Startup).Assembly);
+            services.AddScoped<IInvoiceService, InvoiceService>();
 
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory

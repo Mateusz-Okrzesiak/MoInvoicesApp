@@ -12,7 +12,7 @@ namespace MoInvoices.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<Invoice, InvoiceDTO>()
+            CreateMap<InvoiceDTO, Invoice>()
                 .ForMember(dest => dest.InvoiceID, opt => opt.MapFrom(src => src.InvoiceID))
                 .ForMember(dest => dest.InvoiceNumber, opt => opt.MapFrom(src => src.InvoiceNumber))
                 .ForMember(dest => dest.CityOfIssue, opt => opt.MapFrom(src => src.CityOfIssue))
@@ -22,10 +22,9 @@ namespace MoInvoices.Mappings
                 .ForMember(dest => dest.SellData, opt => opt.MapFrom(src => src.SellData))
                 .ForMember(dest => dest.SumGrossValue, opt => opt.MapFrom(src => src.SumGrossValue))
                 .ForMember(dest => dest.SumNetValue, opt => opt.MapFrom(src => src.SumNetValue))
-                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId));
-            
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId));            
 
-            CreateMap<InvoiceRowService, InvoiceRowServiceDTO>()
+            CreateMap<InvoiceRowServiceDTO, InvoiceRowService>()
                 .ForMember(dest => dest.InvoiceRowServiceID, opt => opt.MapFrom(src => src.InvoiceRowServiceID))
                 .ForMember(dest => dest.GrossValue, opt => opt.MapFrom(src => src.GrossValue))
                 .ForMember(dest => dest.JM, opt => opt.MapFrom(src => src.JM))
@@ -36,11 +35,11 @@ namespace MoInvoices.Mappings
                 .ForMember(dest => dest.VatAmount, opt => opt.MapFrom(src => src.VatAmount))
                 .ForMember(dest => dest.VatRate, opt => opt.MapFrom(src => src.VatRate));
 
-            CreateMap<User, UserDTO>()
+            CreateMap<UserDTO, User>()
                 .ForMember(dest => dest.UserID, opt => opt.MapFrom(src => src.UserID))
                 .ForMember(dest => dest.Login, opt => opt.MapFrom(src => src.Login));
 
-            CreateMap<Contractor, ContractorDTO>()
+            CreateMap<ContractorDTO, Contractor>()
                 .ForMember(dest => dest.ContractorID, opt => opt.MapFrom(src => src.ContractorID))
                 .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.City))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
