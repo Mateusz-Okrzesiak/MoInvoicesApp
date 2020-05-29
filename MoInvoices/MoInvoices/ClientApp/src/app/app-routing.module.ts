@@ -12,7 +12,7 @@ const routes: Routes = [
     { path: 'invoices-list', component: InvoicesListComponent },
     { path: 'customer-list', component: CustomersComponent },
     { path: 'new-invoice', component: NewInvoiceComponent },
-    { path: 'edit-invoice', component: EditInvoiceComponent }
+    { path: 'edit-invoice', component: EditInvoiceComponent },
     { path: 'home', component: HomeComponent }
 ];
 

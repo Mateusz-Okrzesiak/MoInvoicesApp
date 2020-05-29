@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MoInvoices.Transfer
+namespace MoInvoices.DTO
 {
     public class InvoiceDTO
     {

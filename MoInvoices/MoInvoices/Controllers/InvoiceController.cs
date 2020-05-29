@@ -7,10 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MoInvoices.Core;
-using MoInvoices.Enum;
-using MoInvoices.Models;
-using MoInvoices.Pages;
-using MoInvoices.Transfer;
+using MoInvoices.DTO;
 
 namespace MoInvoices.Controllers
 {
@@ -55,7 +52,7 @@ namespace MoInvoices.Controllers
 
         #endregion
 
-        // GET api/answer/all
+        // GET AllUserInvoices/{userid}
         [HttpGet("AllUserInvoices/{userid}")]
         public IEnumerable<InvoiceListDTO> AllUserInvoices(int userID)
         {

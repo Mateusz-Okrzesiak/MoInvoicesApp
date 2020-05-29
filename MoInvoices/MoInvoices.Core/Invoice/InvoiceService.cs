@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using MoInvoices.Models;
 using MoInvoices.Pages;
-using MoInvoices.Transfer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MoInvoices.DTO;
 
 namespace MoInvoices.Core
 {
@@ -43,6 +43,9 @@ namespace MoInvoices.Core
                 Contractor purchaser = _mapper.Map<Contractor>(invoice.Purchaser);
                 Contractor vendor = _mapper.Map<Contractor>(invoice.Vendor);
 
+                purchaser.ContractorTypeID = (int)Enum.ContractorType.Purchaser;
+                vendor.ContractorTypeID = (int)Enum.ContractorType.Vendor;
+
                 _context.Contractor.Add(purchaser);
                 _context.Contractor.Add(vendor);
                 _context.SaveChanges();
@@ -56,13 +59,24 @@ namespace MoInvoices.Core
         public InvoiceDTO GetInvoice(int invoiceID)
         {
             var invoice = _context.Invoice.Where(u => u.InvoiceID == invoiceID).SingleOrDefault();
+        //    invoice.InvoiceRowServices = _context.
             return _mapper.Map<InvoiceDTO>(invoice);
         }
         public IEnumerable<InvoiceListDTO> GetAllUserInvoices(int userID)
         {
-            IEnumerable<InvoiceListDTO> invoiceList = (IEnumerable<InvoiceListDTO>)_context.Invoice.Where(u => u.UserId == userID)
-                                                      .Select(x => _mapper.Map<Invoice, InvoiceDTO>(x));
+            //IEnumerable<InvoiceListDTO> invoiceList = (IEnumerable<InvoiceListDTO>)_context.Invoice.Where(u => u.UserId == userID)
+            //                              .Select(x => _mapper.Map<Invoice, InvoiceDTO>(x));
 
+            IEnumerable<InvoiceListDTO> invoiceList = _context.Invoice.Where(u => u.UserId == userID)
+                                                      .Select(x => new InvoiceListDTO
+                                                      {
+                                                          InvoiceID = x.InvoiceID,
+                                                          DocumentType = x.DocumentType,
+                                                          InvoiceNumber = x.InvoiceNumber,
+                                                          GrossValue = x.SumGrossValue,
+                                                          IssueDate = x.IssueDate,
+                                                          PurchaserName = x.Contractor.Name
+                                                      });
             return invoiceList;
         }
     }

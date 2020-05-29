@@ -1,10 +1,6 @@
 ﻿using AutoMapper;
+using MoInvoices.DTO;
 using MoInvoices.Models;
-using MoInvoices.Transfer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MoInvoices.Mappings
 {
@@ -26,6 +22,31 @@ namespace MoInvoices.Mappings
 
             CreateMap<Invoice, InvoiceDTO>();
 
+            //CreateMap<Invoice, InvoiceDTO>()
+            //    .ForMember(dest => dest.InvoiceID, opt => opt.MapFrom(src => src.InvoiceID))
+            //    .ForMember(dest => dest.InvoiceNumber, opt => opt.MapFrom(src => src.InvoiceNumber))
+            //    .ForMember(dest => dest.CityOfIssue, opt => opt.MapFrom(src => src.CityOfIssue))
+            //    .ForMember(dest => dest.IsPayed, opt => opt.MapFrom(src => src.IsPayed))
+            //    .ForMember(dest => dest.DocumentType, opt => opt.MapFrom(src => src.DocumentType))
+            //    .ForMember(dest => dest.IssueDate, opt => opt.MapFrom(src => src.IssueDate))
+            //    .ForMember(dest => dest.SellData, opt => opt.MapFrom(src => src.SellData))
+            //    .ForMember(dest => dest.SumGrossValue, opt => opt.MapFrom(src => src.SumGrossValue))
+            //    .ForMember(dest => dest.SumNetValue, opt => opt.MapFrom(src => src.SumNetValue))
+            //    .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId));
+
+            //CreateMap<Invoice, InvoiceListDTO>()
+            //   .ForMember(dest => dest.InvoiceID, opt => opt.MapFrom(src => src.InvoiceID))
+            //   .ForMember(dest => dest.InvoiceNumber, opt => opt.MapFrom(src => src.InvoiceNumber))
+            //   .ForMember(dest => dest.GrossValue, opt => opt.MapFrom(src => src.SumGrossValue))
+            //   .ForMember(dest => dest.DocumentType, opt => opt.MapFrom(src => src.DocumentType))
+            //   .ForMember(dest => dest.IssueDate, opt => opt.MapFrom(src => src.IssueDate))
+            //   .ForMember(dest => dest.PurchaserName, opt => opt.MapFrom(src => src.Contractor.Name));
+
+            //CreateMap<InvoiceListDTO, Invoice>()
+            //   .ForMember(dest => dest.InvoiceID, opt => opt.MapFrom(src => src.InvoiceID))
+            //   .ForMember(dest => dest.InvoiceNumber, opt => opt.MapFrom(src => src.InvoiceNumber))
+            //   .ForMember(dest => dest.DocumentType, opt => opt.MapFrom(src => src.DocumentType))
+            //   .ForMember(dest => dest.IssueDate, opt => opt.MapFrom(src => src.IssueDate));
 
             CreateMap<InvoiceRowServiceDTO, InvoiceRowService>()
                 .ForMember(dest => dest.InvoiceRowServiceID, opt => opt.MapFrom(src => src.InvoiceRowServiceID))

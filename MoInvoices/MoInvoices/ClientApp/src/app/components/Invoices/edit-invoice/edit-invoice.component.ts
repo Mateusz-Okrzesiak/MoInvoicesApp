@@ -5,7 +5,7 @@ import { InvoiceService } from 'src/app/services/invoice.service';
 @Component({
   selector: 'app-edit-invoice',
   templateUrl: './edit-invoice.component.html',
-  styleUrls: ['./edit-invoice.component.css']
+  styleUrls: ['./edit-invoice.component.scss']
 })
 export class EditInvoiceComponent implements OnInit {
 
@@ -14,8 +14,9 @@ export class EditInvoiceComponent implements OnInit {
   constructor(private invoiceService: InvoiceService, ) { }
 
   ngOnInit() {
-    this.currentInvoice = 
-    this.invoice.service.push(EMPTY_ROW);
+   // this.currentInvoice = this.invoiceService
+   // this.invoice.service.push(EMPTY_ROW);
+   this.invoiceService.GetInvoice(11);
   }
 
 }
