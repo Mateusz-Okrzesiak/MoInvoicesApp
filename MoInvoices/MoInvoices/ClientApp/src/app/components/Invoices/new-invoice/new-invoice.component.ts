@@ -4,9 +4,11 @@ import { BehaviorSubject } from 'rxjs';
 import { DecimalPipe } from '@angular/common';
 import { element } from 'protractor';
 import { newArray } from '@angular/compiler/src/util';
-import { Invoice, Contractor, InvoiceRowService } from '../../../models/invoice.model';
+import { Invoice } from '../../../models/invoice.model';
 import { InvoiceService } from 'src/app/services/invoice.service';
 import { Router } from '@angular/router';
+import { Contractor } from 'src/app/interfaces/Contractor';
+import { InvoiceRowService } from 'src/app/interfaces/InvoiceRowService';
 
 @Component({
   selector: 'app-new-invoice',

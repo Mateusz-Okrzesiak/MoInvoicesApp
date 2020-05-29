@@ -1,3 +1,5 @@
+import { Contractor } from "../interfaces/Contractor";
+import { InvoiceRowService } from "../interfaces/InvoiceRowService";
 
   export class Invoice {
     invoiceID: number;
@@ -31,37 +33,9 @@
                    this.sumNetValue = sumNetValue;
                    this.userID = this.userID;
                  }
-  }
 
-  export interface Contractor {
-    contractorID: number;
-    name: string;
-    nip: string;
-    street: string;
-    city: string;
-    postalCode: string;
+                 
   }
-
-  export interface InvoiceRowService {
-    invoiceRowServiceID: number;
-    serviceName: string;
-    JM: string;
-    quantity: number;
-    netPrice: number;
-    netWorth: number;
-    vatRate: string;
-    vatAmount: number;
-    grossValue: number;
-    invoiceID: number;
-  }
-
-  export interface InvoiceList {
-  invoiceID: number;
-  documentType: string;
-  invoiceNumber: string;
-  purchaserName: string;
-  issueDate: Date;
-  grossValue: number;
-}
+  
 
 

@@ -1,7 +1,8 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Config } from 'protractor';
-import { Invoice, InvoiceList } from '../models/invoice.model';
+import { Invoice } from '../models/invoice.model';
+import { InvoiceList } from '../interfaces/InvoiceList';
 
 @Injectable()
 export class InvoiceService {

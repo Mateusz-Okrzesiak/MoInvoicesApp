@@ -27,7 +27,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { InvoicesListComponent } from './components/Invoices/invoices-list/invoices-list.component';
 import { NewInvoiceComponent } from './components/Invoices/new-invoice/new-invoice.component';
 import { CustomersComponent } from './components/customers/customers.component';
-import { Config } from 'protractor';
 import { InvoiceService } from './services/invoice.service';
 
 

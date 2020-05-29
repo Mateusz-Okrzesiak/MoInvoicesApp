@@ -219,7 +219,7 @@
         </section>  
         <div class="row">
             <div class="col-md-2">        
-                <button mat-raised-button color="warn" (click)=createInvoice()>Zapisz</button>
+                <button mat-raised-button color="warn" (click)=createInvoice() >Zapisz</button>  <!-- [disabled]="!invoiceForm.form.valid"] -->
             </div>     
             <div class="col-md-2">   
                 <button mat-raised-button color="warn">Pobierz</button>

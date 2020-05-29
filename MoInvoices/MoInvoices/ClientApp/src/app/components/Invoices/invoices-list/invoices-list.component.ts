@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StringifyOptions } from 'querystring';
 import { InvoiceService } from 'src/app/services/invoice.service';
-import { InvoiceList } from 'src/app/models/invoice.model';
+import { InvoiceList } from 'src/app/interfaces/InvoiceList';
 
 @Component({
   selector: 'app-invoices-list',
