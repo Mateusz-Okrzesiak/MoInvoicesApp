@@ -28,17 +28,17 @@ namespace MoInvoices.Controllers
         #region Metody REST
 
         // GET api/<InvoiceController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{invoiceID}")]
+        public InvoiceDTO Get(int invoiceID)
         {
-            return "value1";
+            return this._invoiceService.GetInvoice(invoiceID);
         }
 
         // POST api/<InvoiceController>
         [HttpPost]
         public void Post([FromBody] InvoiceDTO invoice)
         {
-         
+            this._invoiceService.AddNewInvoice(invoice);
         }
 
         // PUT api/<InvoiceController>/5

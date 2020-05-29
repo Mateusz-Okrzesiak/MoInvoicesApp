@@ -11,6 +11,7 @@ namespace MoInvoices.Core
     public interface IInvoiceService
     {
          bool AddNewInvoice(InvoiceDTO invoice);
+        InvoiceDTO GetInvoice(int invoiceID);
          IEnumerable<InvoiceListDTO> GetAllUserInvoices(int userID);
     }
 
@@ -52,18 +53,15 @@ namespace MoInvoices.Core
             return true;
         }
 
+        public InvoiceDTO GetInvoice(int invoiceID)
+        {
+            var invoice = _context.Invoice.Where(u => u.InvoiceID == invoiceID).SingleOrDefault();
+            return _mapper.Map<InvoiceDTO>(invoice);
+        }
         public IEnumerable<InvoiceListDTO> GetAllUserInvoices(int userID)
         {
-            IEnumerable<InvoiceListDTO> invoiceList = _context.Invoice.Where(u => u.UserId == userID)
-                                                      .Select(x => new InvoiceListDTO
-                                                      {
-                                                          InvoiceID = x.InvoiceID,
-                                                          DocumentType = x.DocumentType,
-                                                          InvoiceNumber = x.InvoiceNumber,
-                                                          GrossValue = x.SumGrossValue,
-                                                          IssueDate = x.IssueDate,
-                                                          PurchaserName = x.Contractor.Name
-                                                      });
+            IEnumerable<InvoiceListDTO> invoiceList = (IEnumerable<InvoiceListDTO>)_context.Invoice.Where(u => u.UserId == userID)
+                                                      .Select(x => _mapper.Map<Invoice, InvoiceDTO>(x));
 
             return invoiceList;
         }

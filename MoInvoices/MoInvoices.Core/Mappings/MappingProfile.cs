@@ -22,7 +22,10 @@ namespace MoInvoices.Mappings
                 .ForMember(dest => dest.SellData, opt => opt.MapFrom(src => src.SellData))
                 .ForMember(dest => dest.SumGrossValue, opt => opt.MapFrom(src => src.SumGrossValue))
                 .ForMember(dest => dest.SumNetValue, opt => opt.MapFrom(src => src.SumNetValue))
-                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId));            
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId));
+
+            CreateMap<Invoice, InvoiceDTO>();
+
 
             CreateMap<InvoiceRowServiceDTO, InvoiceRowService>()
                 .ForMember(dest => dest.InvoiceRowServiceID, opt => opt.MapFrom(src => src.InvoiceRowServiceID))

@@ -18,4 +18,8 @@ export class InvoiceService {
     let userID = 1;
     return this.httpClient.get<InvoiceList[]>(this.baseUrl + `Invoice/AllUserInvoices/${userID}`);
   }
+
+  GetInvoice(invoiceID: number) {
+    return this.httpClient.get<Invoice[]>(this.baseUrl + `Invoice/${invoiceID}`);
+  }
 }
