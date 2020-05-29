@@ -11,6 +11,7 @@ namespace MoInvoices.DTO
         public string  DocumentType { get; set; }
         public string InvoiceNumber { get; set; }
         public string PurchaserName { get; set; }
+        public string VendorName { get; set; }
         public DateTime IssueDate { get; set; }
         public decimal GrossValue { get; set; }
     }

@@ -11,7 +11,6 @@ namespace MoInvoices.Pages
     {
         public MoInvoiceContext(DbContextOptions<MoInvoiceContext> options) : base(options)
         {
-
         }
 
         public DbSet<Invoice> Invoice { get; set; }

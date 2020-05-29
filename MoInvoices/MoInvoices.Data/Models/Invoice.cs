@@ -29,13 +29,15 @@ namespace MoInvoices.Models
         public decimal SumNetValue { get; set; }
         [ForeignKey("User")]
         public int UserId { get; set; }
+        public virtual User User { get; set; }
 
         public Invoice()
         {
             this.InvoiceRowServices = new HashSet<InvoiceRowService>();
+            this.Contractors = new HashSet<Contractor>();
         }
 
         public virtual ICollection<InvoiceRowService> InvoiceRowServices { get; private set; }
-        public virtual Contractor Contractor { get; set; }
+        public virtual ICollection<Contractor> Contractors { get; private set; }
     }
 }
