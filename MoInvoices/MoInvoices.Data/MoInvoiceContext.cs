@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MoInvoices.Data.Models;
 using MoInvoices.Models;
 using System;
 using System.Collections.Generic;
@@ -17,5 +18,9 @@ namespace MoInvoices.Pages
         public DbSet<Contractor> Contractor { get; set; }
         public DbSet<InvoiceRowService> InvoiceRowService { get; set; }
         public DbSet<User> User { get; set; }
+        public DbSet<ContractorType> ContractorType { get; set; }
+        public DbSet<DocumentType> DocumentType { get; set; }
+        public DbSet<PaymentType> PaymentType { get; set; }
+        public DbSet<PaymentStatus> PaymentStatus { get; set; }
     }
 }

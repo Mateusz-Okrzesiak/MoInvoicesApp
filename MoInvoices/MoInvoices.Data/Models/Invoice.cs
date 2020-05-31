@@ -12,11 +12,11 @@ namespace MoInvoices.Models
         [Key]
         public int InvoiceID { get; set; }
         [Required]
-        public string DocumentType { get; set; }
+        public int DocumentTypeID { get; set; }
         [Required]
         public string InvoiceNumber { get; set; }
         [Required]
-        public DateTime SellData { get; set; }
+        public DateTime SellDate { get; set; }
         [Required]
         public DateTime IssueDate { get; set; }
         [Required]

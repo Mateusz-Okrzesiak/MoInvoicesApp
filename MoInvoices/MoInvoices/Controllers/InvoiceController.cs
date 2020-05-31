@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MoInvoices.Core;
+using MoInvoices.Data.Models;
 using MoInvoices.DTO;
 
 namespace MoInvoices.Controllers
@@ -39,9 +40,10 @@ namespace MoInvoices.Controllers
         }
 
         // PUT api/<InvoiceController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] UserDTO userdto)
+        [HttpPut]
+        public void Put([FromBody] InvoiceDTO invoice)
         {
+            this._invoiceService.UpdateInvoice(invoice);
         }
 
         // DELETE api/<InvoiceController>/5
@@ -57,6 +59,24 @@ namespace MoInvoices.Controllers
         public IEnumerable<InvoiceListDTO> AllUserInvoices(int userID)
         {
             return this._invoiceService.GetAllUserInvoices(userID);
+        }
+
+        [HttpGet("DocumentTypes")]
+        public IEnumerable<DocumentType> DocumentTypes()
+        {
+            return this._invoiceService.GetDocumentTypes();
+        }
+
+        [HttpGet("PaymentTypes")]
+        public IEnumerable<PaymentType> PaymentTypes()
+        {
+            return this._invoiceService.GetPaymentTypes();
+        }
+
+        [HttpGet("PaymentStatuses")]
+        public IEnumerable<PaymentStatus> PaymentStatuses()
+        {
+            return this._invoiceService.GetPaymentStatuses();
         }
 
 

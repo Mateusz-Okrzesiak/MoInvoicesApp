@@ -19,6 +19,54 @@ namespace MoInvoices.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("MoInvoices.Data.Models.DocumentType", b =>
+                {
+                    b.Property<int>("DocumentTypeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("DocumentTypeID");
+
+                    b.ToTable("DocumentType");
+                });
+
+            modelBuilder.Entity("MoInvoices.Data.Models.PaymentStatus", b =>
+                {
+                    b.Property<int>("PaymentStatusID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("PaymentStatusName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PaymentStatusID");
+
+                    b.ToTable("PaymentStatus");
+                });
+
+            modelBuilder.Entity("MoInvoices.Data.Models.PaymentType", b =>
+                {
+                    b.Property<int>("PaymentTypeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("PaymentTypeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PaymentTypeID");
+
+                    b.ToTable("PaymentType");
+                });
+
             modelBuilder.Entity("MoInvoices.Models.Contractor", b =>
                 {
                     b.Property<int>("ContractorID")
@@ -59,6 +107,21 @@ namespace MoInvoices.Migrations
                     b.ToTable("Contractor");
                 });
 
+            modelBuilder.Entity("MoInvoices.Models.ContractorType", b =>
+                {
+                    b.Property<int>("ContractorTypeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ContractorTypeName")
+                        .HasColumnType("int");
+
+                    b.HasKey("ContractorTypeID");
+
+                    b.ToTable("ContractorType");
+                });
+
             modelBuilder.Entity("MoInvoices.Models.Invoice", b =>
                 {
                     b.Property<int>("InvoiceID")
@@ -70,9 +133,8 @@ namespace MoInvoices.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DocumentType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("DocumentTypeID")
+                        .HasColumnType("int");
 
                     b.Property<string>("InvoiceNumber")
                         .IsRequired()
@@ -84,7 +146,7 @@ namespace MoInvoices.Migrations
                     b.Property<DateTime>("IssueDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("SellData")
+                    b.Property<DateTime>("SellDate")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("SumGrossValue")

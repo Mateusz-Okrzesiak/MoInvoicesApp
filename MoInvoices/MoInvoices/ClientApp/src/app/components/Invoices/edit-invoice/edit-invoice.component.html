@@ -1,4 +1,4 @@
-<!-- 
+
 <mat-toolbar class="full-width">
   <mat-toolbar-row ><div class="offset-lg-2"><h1 id="tableLabel"><strong>Faktura VAT</strong> </h1></div></mat-toolbar-row>
 </mat-toolbar>
@@ -9,22 +9,23 @@
           <div class="col-md-4 col-sm">
               <mat-form-field class="full-width"> 
                   <mat-label>Typ dokumentu</mat-label>
-                  <mat-select required [(ngModel)]="invoice.documentType">
-                  <mat-option value="Faktura VAT">Faktura VAT</mat-option>                    
-                  <mat-option value="Faktura proforma">Faktura proforma</mat-option>
+                  <mat-select required [(ngModel)]="currentInvoice.documentTypeID">
+                    <mat-option *ngFor="let dt of documentTypes" [value]="dt.documentTypeID">
+                        {{ dt.name }}
+                    </mat-option>    
                </mat-select>
              </mat-form-field>
           </div>
           <div class="col-md-4 col-sm">         
               <mat-form-field class="full-width">
                   <mat-label>Numer</mat-label>
-                  <input matInput required placeholder="Numer dokumentu" value="01/05/2020" [(ngModel)]="invoice.invoiceNumber">
+                  <input matInput required placeholder="Numer dokumentu" value="01/05/2020" [(ngModel)]="currentInvoice.invoiceNumber">
               </mat-form-field>
           </div>
           <div class="col-md-4 col-sm">      
               <mat-form-field class="full-width">
                   <mat-label>Data wystawienia</mat-label>
-                  <input matInput required [matDatepicker]="picker" [(ngModel)]="invoice.issueDate">
+                  <input matInput required [matDatepicker]="picker" [(ngModel)]="currentInvoice.issueDate">
                   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
@@ -34,13 +35,13 @@
           <div class="col-md-4 col-sm">    
               <mat-form-field class="full-width">
               <mat-label>Miejsce wystawienia</mat-label>
-              <input matInput required placeholder="Miejscowość" [(ngModel)]="invoice.cityOfIssue">
+              <input matInput required placeholder="Miejscowość" [(ngModel)]="currentInvoice.cityOfIssue">
               </mat-form-field>
           </div>
           <div class="col-md-4 col-sm">
               <mat-form-field>
                   <mat-label>Data sprzedaży</mat-label>
-                  <input required matInput [matDatepicker]="FinishServiceDate" [(ngModel)]="invoice.sellData">
+                    <input required matInput [matDatepicker]="FinishServiceDate" [(ngModel)]="currentInvoice.sellDate">
                   <mat-datepicker-toggle matSuffix [for]="FinishServiceDate"></mat-datepicker-toggle>
                   <mat-datepicker #FinishServiceDate></mat-datepicker>
               </mat-form-field>
@@ -59,28 +60,28 @@
               <div class="row">
                   <mat-label class="col-lg-3 col-sm-4 line-height">Sprzedawca</mat-label>
                   <mat-form-field class="col-md-9 col-sm">              
-                      <textarea required cdkAutosizeMinRows="1" cdkTextareaAutosize matInput [(ngModel)]="invoice.vendor.name" ></textarea>
+                      <textarea required cdkAutosizeMinRows="1" cdkTextareaAutosize matInput [(ngModel)]="currentInvoice.vendor.name" ></textarea>
                   </mat-form-field>
               </div>
               <div class="row">
                   <mat-label class="col-md-3 col-sm line-height">NIP</mat-label>
                   <mat-form-field class="col-md-9 col-sm">              
-                      <input matInput required [(ngModel)]="invoice.vendor.nip">
+                      <input matInput required [(ngModel)]="currentInvoice.vendor.nip">
                   </mat-form-field>
               </div>
               <div class="row">
                   <mat-label class="col-md-3 col-sm line-height">Ulica</mat-label>
                   <mat-form-field class="col-md-9 col-sm">              
-                      <input matInput required [(ngModel)]="invoice.vendor.street">
+                      <input matInput required [(ngModel)]="currentInvoice.vendor.street">
                   </mat-form-field>
               </div>
               <div class="row">
                   <mat-label class="col-md-3 col-sm line-height">Miasto / kod</mat-label>
                   <mat-form-field class="col-md-6 col-sm">
-                      <input matInput required [(ngModel)]="invoice.vendor.city">
+                      <input matInput required [(ngModel)]="currentInvoice.vendor.city">
                   </mat-form-field>
                   <mat-form-field class="col-md-3 col-sm">
-                      <input matInput required [(ngModel)]="invoice.vendor.postalCode">
+                      <input matInput required [(ngModel)]="currentInvoice.vendor.postalCode">
                   </mat-form-field>
               </div>
           </div>
@@ -96,28 +97,28 @@
               <div class="row">
                   <mat-label class="col-lg-3 col-sm-4 line-height">Nabywca</mat-label>
                   <mat-form-field class="col-md-9 col-sm">              
-                      <textarea required cdkAutosizeMinRows="1" cdkTextareaAutosize matInput [(ngModel)]="invoice.purchaser.name"></textarea>
+                      <textarea required cdkAutosizeMinRows="1" cdkTextareaAutosize matInput [(ngModel)]="currentInvoice.purchaser.name"></textarea>
                   </mat-form-field>
               </div>
               <div class="row">
                   <mat-label class="col-md-3 col-sm line-height">NIP</mat-label>
                   <mat-form-field class="col-md-9 col-sm">              
-                      <input matInput required [(ngModel)]="invoice.purchaser.nip">
+                      <input matInput required [(ngModel)]="currentInvoice.purchaser.nip">
                   </mat-form-field>
               </div>
               <div class="row">
                   <mat-label class="col-md-3 col-sm line-height">Ulica</mat-label>
                   <mat-form-field  class="col-md-9 col-sm">              
-                      <input matInput required [(ngModel)]="invoice.purchaser.street">
+                      <input matInput required [(ngModel)]="currentInvoice.purchaser.street">
                   </mat-form-field>
               </div>
               <div class="row">
                   <mat-label class="col-md-3 col-sm line-height">Miasto / kod</mat-label>
                   <mat-form-field class="col-md-6 col-sm">
-                      <input matInput required [(ngModel)]="invoice.purchaser.city" >
+                      <input matInput required [(ngModel)]="currentInvoice.purchaser.city" >
                   </mat-form-field>
                   <mat-form-field class="col-md-3 col-sm">
-                      <input matInput required [(ngModel)]="invoice.purchaser.postalCode">
+                      <input matInput required [(ngModel)]="currentInvoice.purchaser.postalCode">
                   </mat-form-field>
               </div>
           </div>
@@ -125,13 +126,13 @@
   </div>
   <div class="container col-md-8 col-sm-12">   
       <div class="row">
-          <table mat-table [dataSource]="invoice.service" class="col-8">
+          <table mat-table [dataSource]="currentInvoice.services" class="col-8">
              
               <ng-container matColumnDef="serviceName">
                   <th mat-header-cell *matHeaderCellDef> Nazwa towaru lub usługi </th>
                   <td mat-cell *matCellDef="let element">               
                       <mat-form-field >
-                          <input matInput required type="text" (change)="updateServiceName(element, $event.target.value)">              
+                          <input matInput required type="text" value="{{element.serviceName}}" (change)="updateServiceName(element, $event.target.value)">              
                       </mat-form-field>
                   </td>
               </ng-container>
@@ -139,14 +140,18 @@
               <ng-container matColumnDef="JM">
                   <th id="JM" mat-header-cell  *matHeaderCellDef> Jm. </th>
                   <td mat-cell *matCellDef="let element"> 
-                      <input matInput required type="text" value={{element.JM}}>     
+                    <mat-form-field >
+                      <input matInput required type="text" value={{element.JM}}>    
+                    </mat-form-field> 
                   </td>
               </ng-container>
           
               <ng-container matColumnDef="quantity">
                   <th mat-header-cell *matHeaderCellDef> Ilość </th>
                   <td mat-cell *matCellDef="let element"> 
+                    <mat-form-field >
                       <input matInput required type="text" value={{element.quantity}} (change)="updateQuantity(element, $event.target.value)">    
+                    </mat-form-field>
                   </td>
               </ng-container>
           
@@ -205,25 +210,27 @@
 
       <section>
           <div class="row summary">
-              <mat-label class="col-md-2 col-sm line-height">Razem brutto</mat-label>
+              <mat-label class="col-md-2 col-sm line-height">Razem: </mat-label>
               <mat-form-field class="col-md-2 col-sm">              
-                  <input matInput readonly type="number" [(ngModel)]="invoice.sumGrossValue">
-              </mat-form-field>    
+                  <input matInput readonly type="number" [(ngModel)]="currentInvoice.sumGrossValue">
+              </mat-form-field>  
+             <!-- <mat-label class="col-md-2 col-sm line-height">Razem netto</mat-label> -->
+              <mat-form-field class="col-md-2 col-sm">              
+                  <input matInput readonly type="number" [(ngModel)]="currentInvoice.sumNetValue" >
+              </mat-form-field>   
+              
           </div>  
           <div class="row summary">
-              <mat-label class="col-md-2 col-sm line-height">Razem netto</mat-label>
-              <mat-form-field class="col-md-2 col-sm">              
-                  <input matInput readonly type="number" [(ngModel)]="invoice.sumNetValue" >
-              </mat-form-field>    
+ 
           </div>  
       </section>  
       <div class="row">
           <div class="col-md-2">        
-              <button mat-raised-button color="warn" (click)=createInvoice() >Zapisz</button>   [disabled]="!invoiceForm.form.valid"] 
+            <button mat-raised-button color="warn" (click)=updateInvoice() >Zapisz</button> 
           </div>     
           <div class="col-md-2">   
               <button mat-raised-button color="warn">Pobierz</button>
           </div>
       </div>
   </div>
-</section> -->
+</section>

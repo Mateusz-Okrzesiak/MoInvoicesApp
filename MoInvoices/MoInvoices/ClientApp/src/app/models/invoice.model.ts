@@ -1,41 +1,48 @@
-import { Contractor } from "../interfaces/Contractor";
+import { Contractor } from "../interfaces/contractor";
 import { InvoiceRowService } from "../interfaces/InvoiceRowService";
+import { PaymentType } from "../interfaces/paymentType";
 
   export class Invoice {
     invoiceID: number;
-    documentType: string;
+    documentTypeID: number;
     invoiceNumber: string;
-    sellData: Date;
+    sellDate: Date;
     issueDate: Date;
     cityOfIssue: string;
-    service: InvoiceRowService[];
+    services: InvoiceRowService[];
     purchaser: Contractor;
     vendor: Contractor;
     isPayed: Boolean;
     sumGrossValue: number;
     sumNetValue: number;
     userID: number;
+    paymentDate: Date;
+    accountNR: string;
+    paymentStatusID: number;
+    paymentTypeID: number;
 
-    constructor(invoiceID: number, documentType: string, invoiceNumber: string,
-                sellData: Date, issueDate: Date, cityOfIssue: string, service: InvoiceRowService [],
-                 purchaser: Contractor, vendor: Contractor, isPayed: Boolean, sumGrossValue: number, sumNetValue: number) {
+    constructor(invoiceID: number, documentTypeID: number, invoiceNumber: string,
+                sellData: Date, issueDate: Date, cityOfIssue: string, services: InvoiceRowService [],
+                 purchaser: Contractor, vendor: Contractor, isPayed: Boolean, sumGrossValue: number,
+                 sumNetValue: number, userID: number, accountNR: string, paymentStatusID: number) {
                    this.invoiceID = invoiceID;
-                   this.documentType = documentType;
+                   this.documentTypeID = documentTypeID;
                    this.invoiceNumber = invoiceNumber;
-                   this.sellData = sellData;
+                   this.sellDate = sellData;
                    this.issueDate = issueDate;
                    this.cityOfIssue = cityOfIssue;
-                   this.service = service;
+                   this.services = services;
                    this.purchaser = purchaser;
                    this.vendor = vendor;
                    this.isPayed = isPayed;
                    this.sumGrossValue = sumGrossValue;
                    this.sumNetValue = sumNetValue;
-                   this.userID = this.userID;
+                   this.userID = userID;
+                   this.accountNR = accountNR;
+                   this.paymentStatusID = paymentStatusID;
                  }
 
-                 
   }
-  
+
 
 

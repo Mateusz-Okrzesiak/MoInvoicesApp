@@ -1,7 +1,7 @@
 
  export interface InvoiceList {
     invoiceID: number;
-    documentType: string;
+    documentTypeName: string;
     invoiceNumber: string;
     purchaserName: string;
     issueDate: Date;
