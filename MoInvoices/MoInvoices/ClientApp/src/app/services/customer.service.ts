@@ -10,7 +10,7 @@ export class CustomerService {
 
   createCustomer(customer: Customer) {
     customer.userID = 1;
-    this.httpClient.post<Customer>(this.baseUrl + 'customer', customer).subscribe();
+    return this.httpClient.post<Customer>(this.baseUrl + 'customer', customer);
   }
 
   getCustomer(customerID: number) {
@@ -18,11 +18,10 @@ export class CustomerService {
   }
 
   deleteCustomer(customerID: number) {
-    return this.httpClient.delete<Customer>(this.baseUrl + `customer/${customerID}`);
+    return this.httpClient.delete(this.baseUrl + `customer/${customerID}`);
   }
 
   UpdateCustomer(customer: Customer) {
-    customer.userID = 1;
     this.httpClient.put<Customer>(this.baseUrl + 'customer', customer).subscribe();
   }
 

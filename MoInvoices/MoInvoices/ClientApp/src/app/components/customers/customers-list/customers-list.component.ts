@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CustomerList } from 'src/app/interfaces/customerList';
 import { CustomerService } from 'src/app/services/customer.service';
+import { MatTable } from '@angular/material';
 
 @Component({
   selector: 'app-customers-list',
@@ -9,6 +10,7 @@ import { CustomerService } from 'src/app/services/customer.service';
 })
 export class CustomersListComponent implements OnInit {
 
+  @ViewChild(MatTable) customerTable: MatTable<any>;
   displayedColumns: string[] = ['id', 'customerName', 'nip', 'city', 'street'];
   customerList: CustomerList[];
 
@@ -19,7 +21,12 @@ export class CustomersListComponent implements OnInit {
     this.customerService.getAllUserCustomers().subscribe(ctr => {
       this.customerList = ctr;
     });
-
   }
 
+  remove(id: number) {
+      this.customerService.deleteCustomer(id).subscribe( () => {
+        this.customerList = this.customerList.filter(c => c.customerID !== id);
+        this.customerTable.renderRows();
+      });
+    }
 }

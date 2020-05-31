@@ -40,13 +40,13 @@ namespace MoInvoices.Web.Controllers
         [HttpPost]
         public void Post([FromBody] CustomerDTO customerDTO)
         {
-
+            this._customerService.AddCustomer(customerDTO);
         }
-
-        // PUT api/<Customer>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+            
+        [HttpPut]
+        public void Put([FromBody] CustomerDTO customerDTO)
         {
+            this._customerService.UpdateCustomer(customerDTO);
         }
 
         // DELETE api/<Customer>/5
@@ -59,7 +59,7 @@ namespace MoInvoices.Web.Controllers
         #endregion
 
         [HttpGet("AllUserCustomers/{userid}")]
-        public IEnumerable<CustomerDTO> AllUserCustomers(int userID)
+        public IEnumerable<CustomerListDTO> AllUserCustomers(int userID)
         {
             return this._customerService.GetAllUserCustomers(userID);
         }

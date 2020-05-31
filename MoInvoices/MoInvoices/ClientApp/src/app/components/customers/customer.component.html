@@ -1,0 +1,49 @@
+
+<mat-toolbar class="full-width">
+  <mat-toolbar-row ><div class="offset-lg-2"><h1><strong>Klient</strong> </h1></div></mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card class="card col-4" >
+  <mat-card-title>Nowy klient</mat-card-title>  
+  <form #customerForm="ngForm" (ngSubmit)="addCustomer(customerForm)">
+  <mat-card-content>
+    <div class="container">
+      <div class="row">
+        <mat-label class="col-lg-3 col-sm-4 line-height">Nazwa klienta</mat-label>
+        <mat-form-field class="col-md-9 col-sm">              
+            <textarea required cdkAutosizeMinRows="1" cdkTextareaAutosize matInput [(ngModel)]="customer.customerName" name="name"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-label class="col-md-3 col-sm line-height">NIP</mat-label>
+        <mat-form-field class="col-md-9 col-sm">              
+            <input matInput required [(ngModel)]="customer.nip" name="nip">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-label class="col-md-3 col-sm line-height">Ulica</mat-label>
+        <mat-form-field class="col-md-9 col-sm">              
+            <input matInput required [(ngModel)]="customer.street"  name="street">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-label class="col-md-3 col-sm line-height">Miasto / kod</mat-label>
+        <mat-form-field class="col-md-6 col-sm">
+            <input matInput required [(ngModel)]="customer.city" name="city">
+        </mat-form-field>
+        <mat-form-field class="col-md-3 col-sm">
+            <input matInput required [(ngModel)]="customer.postalCode" name="postalCode">
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>  
+      <button *ngIf="!editMode" type="submit" mat-raised-button color="primary" [disabled]="!customerForm.form.valid">Zapisz</button> 
+      <button *ngIf="editMode" type="button" mat-raised-button color="primary" (click)="update()" [disabled]="!customerForm.form.valid">Aktualizuj</button>
+
+      <button mat-raised-button color="warn" (click)="customerForm.resetForm()">Wyczyść</button>
+  </mat-card-actions>
+</form>
+  <mat-card-footer></mat-card-footer>
+</mat-card>

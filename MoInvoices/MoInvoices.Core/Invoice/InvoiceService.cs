@@ -12,8 +12,9 @@ namespace MoInvoices.Core
 {
     public interface IInvoiceService
     {
-        bool AddNewInvoice(InvoiceDTO invoice);
-        bool UpdateInvoice(InvoiceDTO invoice);
+        void AddNewInvoice(InvoiceDTO invoice);
+        void UpdateInvoice(InvoiceDTO invoice);
+        void DeleteInvoice(int id);
         InvoiceDTO GetInvoice(int invoiceID);
         IEnumerable<InvoiceListDTO> GetAllUserInvoices(int userID);
 
@@ -33,7 +34,7 @@ namespace MoInvoices.Core
             _mapper = mapper;
         }
 
-        public bool AddNewInvoice(InvoiceDTO invoice)
+        public void AddNewInvoice(InvoiceDTO invoice)
         {
             try
             {
@@ -62,10 +63,9 @@ namespace MoInvoices.Core
             catch (Exception ex)
             {
             }
-            return true;
         }
 
-        public bool UpdateInvoice(InvoiceDTO editInvoice)
+        public void UpdateInvoice(InvoiceDTO editInvoice)
         {
             var invoice = _context.Invoice.SingleOrDefault(i => i.InvoiceID.Equals(editInvoice.InvoiceID));
             invoice = _mapper.Map<Invoice>(editInvoice);
@@ -73,8 +73,14 @@ namespace MoInvoices.Core
 
             _context.Update(invoice);
             _context.SaveChanges();
+        }
 
-            return true;
+        public void DeleteInvoice(int id)
+        {
+            var invoice = _context.Invoice.Find(id);
+            _context.Remove(invoice);
+
+            _context.SaveChanges();
         }
 
         public InvoiceDTO GetInvoice(int invoiceID)

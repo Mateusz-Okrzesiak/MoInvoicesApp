@@ -50,6 +50,7 @@ namespace MoInvoices.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            this._invoiceService.DeleteInvoice(id);
         }
 
         #endregion

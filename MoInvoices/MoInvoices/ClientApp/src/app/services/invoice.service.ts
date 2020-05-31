@@ -21,7 +21,7 @@ export class InvoiceService {
   }
 
   deleteInvoice(invoiceID: number) {
-    return this.httpClient.delete<Invoice>(this.baseUrl + `Invoice/${invoiceID}`);
+    return this.httpClient.delete(this.baseUrl + `Invoice/${invoiceID}`);
   }
 
   updateInvoice(invoice: Invoice) {
