@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoInvoices.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,5 +19,6 @@ namespace MoInvoices.Models
             this.Invoices = new HashSet<Invoice>();
         }   
         public virtual ICollection<Invoice> Invoices { get; private set; }
+        public virtual ICollection<Customer> Customers { get; private set; }
     }
 }
