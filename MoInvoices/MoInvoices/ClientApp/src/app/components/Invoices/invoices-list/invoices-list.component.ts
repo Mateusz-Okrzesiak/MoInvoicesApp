@@ -24,7 +24,7 @@ export class InvoicesListComponent implements OnInit {
   }
   remove(id: number) {
     this.invoiceService.deleteInvoice(id).subscribe(() => {
-      this.invoiceList.filter(i => i.invoiceID !== id);
+      this.invoiceList = this.invoiceList.filter(i => i.invoiceID !== id);
       this.invoiceTable.renderRows();
     });
   }
