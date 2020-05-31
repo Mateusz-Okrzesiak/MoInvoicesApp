@@ -1,7 +1,10 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Config } from 'protractor';
-import { Invoice, InvoiceList } from '../models/invoice.model';
+import { DocumentType } from 'src/app/interfaces/documentType';
+import { Invoice } from '../models/invoice.model';
+import { InvoiceList } from '../interfaces/InvoiceList';
+import { PaymentType } from '../interfaces/paymentType';
+import { PaymentStatus } from '../interfaces/paymentStatus';
 
 @Injectable()
 export class InvoiceService {
@@ -12,9 +15,29 @@ export class InvoiceService {
     invoice.userID = 1;
     this.httpClient.post<Invoice>(this.baseUrl + 'invoice', invoice).subscribe();
   }
+  updateInvoice(invoice: Invoice) {
+    invoice.userID = 1;
+    this.httpClient.put<Invoice>(this.baseUrl + 'invoice', invoice).subscribe();
+  }
 
-  GetAllUserInvoices() {
-    let userID = 1;
+  getAllUserInvoices() {
+    const userID = 1;
     return this.httpClient.get<InvoiceList[]>(this.baseUrl + `Invoice/AllUserInvoices/${userID}`);
+  }
+
+  getInvoice(invoiceID: number) {
+    return this.httpClient.get<Invoice>(this.baseUrl + `Invoice/${invoiceID}`);
+  }
+
+  getDocumentTypes() {
+    return this.httpClient.get<DocumentType[]>(this.baseUrl + `Invoice/DocumentTypes`);
+  }
+
+  getPaymentTypes() {
+    return this.httpClient.get<PaymentType[]>(this.baseUrl + `Invoice/PaymentTypes`);
+  }
+
+  getPaymentStatuses() {
+    return this.httpClient.get<PaymentStatus[]>(this.baseUrl + `Invoice/PaymentStatuses`);
   }
 }

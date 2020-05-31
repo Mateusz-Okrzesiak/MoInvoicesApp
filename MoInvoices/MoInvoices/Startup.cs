@@ -15,7 +15,6 @@ namespace MoInvoices
 {
     public class Startup
     {
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,9 +26,9 @@ namespace MoInvoices
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<MoInvoiceContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DevConnection")));
+            options.UseSqlServer(Configuration.GetConnectionString("DevConnection")).UseLazyLoadingProxies());
 
-            services.AddAutoMapper(typeof(Startup).Assembly);
+            services.AddAutoMapper(typeof(MoInvoices.Mappings.MappingProfile).Assembly);
             services.AddScoped<IInvoiceService, InvoiceService>();
             services.AddScoped<ICustomerService, CustomerService>();
 
