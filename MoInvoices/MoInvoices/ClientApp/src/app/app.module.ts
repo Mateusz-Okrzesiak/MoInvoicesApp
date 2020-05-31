@@ -27,8 +27,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { InvoicesListComponent } from './components/Invoices/invoices-list/invoices-list.component';
 import { NewInvoiceComponent } from './components/Invoices/new-invoice/new-invoice.component';
 import { CustomersComponent } from './components/customers/customers.component';
-import { Config } from 'protractor';
 import { InvoiceService } from './services/invoice.service';
+import { EditInvoiceComponent } from './components/Invoices/edit-invoice/edit-invoice.component';
 
 
 @NgModule({
@@ -38,7 +38,8 @@ import { InvoiceService } from './services/invoice.service';
     HomeComponent,
     NewInvoiceComponent,
     InvoicesListComponent,
-    CustomersComponent
+    CustomersComponent,
+    EditInvoiceComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

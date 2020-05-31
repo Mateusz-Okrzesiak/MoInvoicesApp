@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MoInvoices.Pages;
 
-namespace MoInvoices.Migrations
+namespace MoInvoices.Data.Migrations
 {
     [DbContext(typeof(MoInvoiceContext))]
-    [Migration("20200525003841_add contractortypeID to invoice")]
-    partial class addcontractortypeIDtoinvoice
+    [Migration("20200530173140_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -56,8 +56,7 @@ namespace MoInvoices.Migrations
 
                     b.HasKey("ContractorID");
 
-                    b.HasIndex("InvoiceID")
-                        .IsUnique();
+                    b.HasIndex("InvoiceID");
 
                     b.ToTable("Contractor");
                 });
@@ -73,7 +72,7 @@ namespace MoInvoices.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DocumentType")
+                    b.Property<string>("DocumentTypeID")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -87,7 +86,7 @@ namespace MoInvoices.Migrations
                     b.Property<DateTime>("IssueDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("SellData")
+                    b.Property<DateTime>("SellDate")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("SumGrossValue")
@@ -169,15 +168,15 @@ namespace MoInvoices.Migrations
             modelBuilder.Entity("MoInvoices.Models.Contractor", b =>
                 {
                     b.HasOne("MoInvoices.Models.Invoice", "Invoice")
-                        .WithOne("Contractor")
-                        .HasForeignKey("MoInvoices.Models.Contractor", "InvoiceID")
+                        .WithMany("Contractors")
+                        .HasForeignKey("InvoiceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("MoInvoices.Models.Invoice", b =>
                 {
-                    b.HasOne("MoInvoices.Models.User", null)
+                    b.HasOne("MoInvoices.Models.User", "User")
                         .WithMany("Invoices")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -1,4 +1,4 @@
-﻿namespace MoInvoices.Transfer
+﻿namespace MoInvoices.DTO
 {
     public class InvoiceRowServiceDTO
     {

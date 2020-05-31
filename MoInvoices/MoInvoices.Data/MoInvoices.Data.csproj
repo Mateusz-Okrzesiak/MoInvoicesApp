@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200530224428_ updatePaymentStatus.cs" />
+    <Compile Remove="Migrations\20200530224428_ updatePaymentStatus.Designer.cs" />
+    <Compile Remove="Migrations\20200530224920_updatepaymentStats.cs" />
+    <Compile Remove="Migrations\20200530224920_updatepaymentStats.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.4" />

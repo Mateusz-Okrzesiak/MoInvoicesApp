@@ -12,11 +12,11 @@ namespace MoInvoices.Models
         [Key]
         public int InvoiceID { get; set; }
         [Required]
-        public string DocumentType { get; set; }
+        public int DocumentTypeID { get; set; }
         [Required]
         public string InvoiceNumber { get; set; }
         [Required]
-        public DateTime SellData { get; set; }
+        public DateTime SellDate { get; set; }
         [Required]
         public DateTime IssueDate { get; set; }
         [Required]
@@ -29,13 +29,15 @@ namespace MoInvoices.Models
         public decimal SumNetValue { get; set; }
         [ForeignKey("User")]
         public int UserId { get; set; }
+        public virtual User User { get; set; }
 
         public Invoice()
         {
             this.InvoiceRowServices = new HashSet<InvoiceRowService>();
+            this.Contractors = new HashSet<Contractor>();
         }
 
         public virtual ICollection<InvoiceRowService> InvoiceRowServices { get; private set; }
-        public virtual Contractor Contractor { get; set; }
+        public virtual ICollection<Contractor> Contractors { get; private set; }
     }
 }
