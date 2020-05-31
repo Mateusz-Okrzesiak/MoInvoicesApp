@@ -23,8 +23,8 @@ import { PaymentType } from "../interfaces/paymentType";
 
     constructor(invoiceID: number, documentTypeID: number, invoiceNumber: string,
                 sellData: Date, issueDate: Date, cityOfIssue: string, services: InvoiceRowService [],
-                 purchaser: Contractor, vendor: Contractor, isPayed: Boolean, sumGrossValue: number,
-                 sumNetValue: number, userID: number, accountNR: string, paymentStatusID: number) {
+                purchaser: Contractor, vendor: Contractor, isPayed: Boolean, sumGrossValue: number,
+                sumNetValue: number, userID: number, accountNR: string, paymentStatusID: number) {
                    this.invoiceID = invoiceID;
                    this.documentTypeID = documentTypeID;
                    this.invoiceNumber = invoiceNumber;

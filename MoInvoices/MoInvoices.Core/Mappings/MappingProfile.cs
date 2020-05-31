@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MoInvoices.Data.DTO;
 using MoInvoices.DTO;
 using MoInvoices.Models;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace MoInvoices.Mappings
     {
         public MappingProfile()
         {
-
+            #region mapping invoice
             //CreateMap<InvoiceDTO, Invoice>()
             //    .ForMember(dest => dest.InvoiceID, opt => opt.MapFrom(src => src.InvoiceID))
             //    .ForMember(dest => dest.InvoiceNumber, opt => opt.MapFrom(src => src.InvoiceNumber))
@@ -112,6 +113,34 @@ namespace MoInvoices.Mappings
                 .ForMember(dest => dest.NIP, opt => opt.MapFrom(src => src.NIP))
                 .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.PostalCode))
                 .ForMember(dest => dest.Street, opt => opt.MapFrom(src => src.Street));
+
+            #endregion
+
+            #region mapping customer
+            CreateMap<CustomerDTO, Customer>()
+                .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.CustomerName))
+                .ForMember(dest => dest.NIP, opt => opt.MapFrom(src => src.NIP))
+                .ForMember(dest => dest.Street, opt => opt.MapFrom(src => src.Street))
+                .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.PostalCode))
+                .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.City))
+                .ForMember(dest => dest.UserID, opt => opt.MapFrom(src => src.UserID))
+                .ForMember(dest => dest.User, opt => opt.Ignore());
+
+            CreateMap<Customer, CustomerListDTO>()
+                .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.CustomerName))
+                .ForMember(dest => dest.CustomerID, opt => opt.MapFrom(src => src.CustomerID))
+                .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.City))
+                .ForMember(dest => dest.NIP, opt => opt.MapFrom(src => src.NIP))
+                .ForMember(dest => dest.Street, opt => opt.MapFrom(src => src.Street));
+
+            CreateMap<Customer, CustomerDTO>()
+                .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.CustomerName))
+                .ForMember(dest => dest.NIP, opt => opt.MapFrom(src => src.NIP))
+                .ForMember(dest => dest.Street, opt => opt.MapFrom(src => src.Street))
+                .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.PostalCode))
+                .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.City))
+                .ForMember(dest => dest.UserID, opt => opt.MapFrom(src => src.UserID));
+            #endregion
         }
     }
 }

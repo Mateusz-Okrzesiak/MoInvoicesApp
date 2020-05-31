@@ -20,8 +20,8 @@ export class EditInvoiceComponent implements OnInit {
   documentTypes: DocumentType[];
 
   constructor(private invoiceService: InvoiceService,
-    private route: ActivatedRoute,
-     private router: Router) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.invoiceService.getInvoice(+this.route.snapshot.paramMap.get('invoiceID')).subscribe(invoice => {

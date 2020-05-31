@@ -22,5 +22,6 @@ namespace MoInvoices.Pages
         public DbSet<DocumentType> DocumentType { get; set; }
         public DbSet<PaymentType> PaymentType { get; set; }
         public DbSet<PaymentStatus> PaymentStatus { get; set; }
+        public DbSet<Customer> Customer { get; set; }
     }
 }

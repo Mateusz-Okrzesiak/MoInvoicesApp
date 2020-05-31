@@ -8,10 +8,13 @@
 
         <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>  </th>
-        <td mat-cell *matCellDef="let element">                    
-            <button mat-icon-button routerLink="/edit-invoice/{{ element.invoiceID }}">
-                <mat-icon color="primary">edit</mat-icon>
+        <td mat-cell *matCellDef="let element">  
+            <button mat-icon-button (click)="remove(element.invoiceID)">
+                <mat-icon color="primary">delete_outline</mat-icon>
             </button>
+            <button mat-icon-button routerLink="/invoice/edit/{{ element.invoiceID }}">
+                <mat-icon color="primary">edit</mat-icon>
+            </button>                  
         </td>
         </ng-container>
     

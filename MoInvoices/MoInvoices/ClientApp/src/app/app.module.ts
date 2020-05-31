@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule , ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
@@ -19,6 +19,7 @@ import {
   MatSelectModule,
   MatDatepickerModule,
   MatNativeDateModule,
+  MatDialogModule,
   MatToolbarRow,
   MatGridList,
   MatGridListModule
@@ -26,9 +27,11 @@ import {
 import { AppRoutingModule } from './app-routing.module';
 import { InvoicesListComponent } from './components/Invoices/invoices-list/invoices-list.component';
 import { NewInvoiceComponent } from './components/Invoices/new-invoice/new-invoice.component';
-import { CustomersComponent } from './components/customers/customers.component';
+import { CustomerComponent } from './components/customers/customer.component';
 import { InvoiceService } from './services/invoice.service';
 import { EditInvoiceComponent } from './components/Invoices/edit-invoice/edit-invoice.component';
+import { CustomerService } from './services/customer.service';
+import { CustomersListComponent } from './components/customers/customers-list/customers-list.component';
 
 
 @NgModule({
@@ -38,13 +41,15 @@ import { EditInvoiceComponent } from './components/Invoices/edit-invoice/edit-in
     HomeComponent,
     NewInvoiceComponent,
     InvoicesListComponent,
-    CustomersComponent,
+    CustomerComponent,
+    CustomersListComponent,
     EditInvoiceComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     MatButtonModule,
     MatMenuModule,
@@ -60,6 +65,7 @@ import { EditInvoiceComponent } from './components/Invoices/edit-invoice/edit-in
     MatNativeDateModule,
     MatGridListModule,
     MatTableModule,
+    MatDialogModule,
     HttpClientModule
   ], exports: [
     MatButtonModule,
@@ -68,7 +74,7 @@ import { EditInvoiceComponent } from './components/Invoices/edit-invoice/edit-in
     MatIconModule,
     MatCardModule,
   ],
-  providers: [InvoiceService],
+  providers: [InvoiceService, CustomerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
