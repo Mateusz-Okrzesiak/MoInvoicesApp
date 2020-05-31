@@ -16,6 +16,8 @@ namespace MoInvoices.Core
         bool UpdateInvoice(InvoiceDTO invoice);
         InvoiceDTO GetInvoice(int invoiceID);
         IEnumerable<InvoiceListDTO> GetAllUserInvoices(int userID);
+
+
         IEnumerable<DocumentType> GetDocumentTypes();
         IEnumerable<PaymentType> GetPaymentTypes();
         IEnumerable<PaymentStatus> GetPaymentStatuses();
@@ -77,7 +79,7 @@ namespace MoInvoices.Core
 
         public InvoiceDTO GetInvoice(int invoiceID)
         {
-            var invoice = _context.Invoice.Where(u => u.InvoiceID == invoiceID).SingleOrDefault();
+            var invoice = _context.Invoice.Find(invoiceID);
             return _mapper.Map<InvoiceDTO>(invoice);
         }
 
@@ -88,20 +90,24 @@ namespace MoInvoices.Core
        
             return invoiceList;
         }
+
+
+        #region metody pobierające typy
         public IEnumerable<DocumentType> GetDocumentTypes()
         {
-            return _context.DocumentType.Select(dt => dt);
+            return _context.DocumentType.ToList();
         }
 
         public IEnumerable<PaymentType> GetPaymentTypes()
         {
-            return _context.PaymentType.Select(dt => dt);
+            return _context.PaymentType.ToList();
         }
 
         public IEnumerable<PaymentStatus> GetPaymentStatuses()
         {
-            return _context.PaymentStatus.Select(dt => dt);
+            return _context.PaymentStatus.ToList();
         }
+        #endregion
 
     }
 }

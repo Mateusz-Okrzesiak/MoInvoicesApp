@@ -15,6 +15,15 @@ export class InvoiceService {
     invoice.userID = 1;
     this.httpClient.post<Invoice>(this.baseUrl + 'invoice', invoice).subscribe();
   }
+
+  getInvoice(invoiceID: number) {
+    return this.httpClient.get<Invoice>(this.baseUrl + `Invoice/${invoiceID}`);
+  }
+
+  deleteInvoice(invoiceID: number) {
+    return this.httpClient.delete<Invoice>(this.baseUrl + `Invoice/${invoiceID}`);
+  }
+
   updateInvoice(invoice: Invoice) {
     invoice.userID = 1;
     this.httpClient.put<Invoice>(this.baseUrl + 'invoice', invoice).subscribe();
@@ -25,9 +34,7 @@ export class InvoiceService {
     return this.httpClient.get<InvoiceList[]>(this.baseUrl + `Invoice/AllUserInvoices/${userID}`);
   }
 
-  getInvoice(invoiceID: number) {
-    return this.httpClient.get<Invoice>(this.baseUrl + `Invoice/${invoiceID}`);
-  }
+  // Metody uzupełniające Typy
 
   getDocumentTypes() {
     return this.httpClient.get<DocumentType[]>(this.baseUrl + `Invoice/DocumentTypes`);

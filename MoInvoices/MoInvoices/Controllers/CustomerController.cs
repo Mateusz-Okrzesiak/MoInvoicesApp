@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MoInvoices.Core.Customer;
+using MoInvoices.Data.DTO;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,6 +21,7 @@ namespace MoInvoices.Web.Controllers
             this._customerService = customerService;
         }
 
+        #region REST
         // GET: api/<Customer>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -29,15 +31,16 @@ namespace MoInvoices.Web.Controllers
 
         // GET api/<Customer>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public CustomerDTO Get(int id)
         {
             return this._customerService.GetCustomer(id);
         }
 
         // POST api/<Customer>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] CustomerDTO customerDTO)
         {
+
         }
 
         // PUT api/<Customer>/5
@@ -50,6 +53,15 @@ namespace MoInvoices.Web.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+             this._customerService.DeleteCustomer(id);
+        }
+
+        #endregion
+
+        [HttpGet("AllUserCustomers/{userid}")]
+        public IEnumerable<CustomerDTO> AllUserCustomers(int userID)
+        {
+            return this._customerService.GetAllUserCustomers(userID);
         }
     }
 }

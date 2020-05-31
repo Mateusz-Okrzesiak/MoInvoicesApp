@@ -17,6 +17,7 @@ namespace MoInvoices.Models
         public User()
         {
             this.Invoices = new HashSet<Invoice>();
+            this.Customers = new HashSet<Customer>();
         }   
         public virtual ICollection<Invoice> Invoices { get; private set; }
         public virtual ICollection<Customer> Customers { get; private set; }

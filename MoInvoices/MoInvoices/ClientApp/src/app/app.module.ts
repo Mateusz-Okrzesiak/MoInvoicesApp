@@ -29,6 +29,7 @@ import { NewInvoiceComponent } from './components/Invoices/new-invoice/new-invoi
 import { CustomersComponent } from './components/customers/customers.component';
 import { InvoiceService } from './services/invoice.service';
 import { EditInvoiceComponent } from './components/Invoices/edit-invoice/edit-invoice.component';
+import { CustomerService } from './services/customer.service';
 
 
 @NgModule({
@@ -68,7 +69,7 @@ import { EditInvoiceComponent } from './components/Invoices/edit-invoice/edit-in
     MatIconModule,
     MatCardModule,
   ],
-  providers: [InvoiceService],
+  providers: [InvoiceService, CustomerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
