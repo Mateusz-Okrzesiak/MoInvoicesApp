@@ -9,6 +9,8 @@ import { Contractor } from 'src/app/interfaces/contractor';
 import { InvoiceRowService } from 'src/app/interfaces/InvoiceRowService';
 import { PaymentType } from 'src/app/interfaces/paymentType';
 import { PaymentStatus } from 'src/app/interfaces/paymentStatus';
+import { PdfService } from 'src/app/services/pdf.service';
+import { FormGroup, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-new-invoice',
@@ -20,18 +22,24 @@ export class NewInvoiceComponent implements OnInit {
 
   @ViewChild(MatTable) table: MatTable<any>;
   displayedColumns: string[] = ['delete', 'serviceName', 'JM', 'quantity', 'netPrice', 'netWorth', 'vatRate', 'vatAmount', 'grossValue'];
-
-  contractor: Contractor = { contractorID: -1, name: '', nip: '', city: '', postalCode: '', street: ''};
-  vendor: Contractor = { contractorID: -1, name: '', nip: '', city: '', postalCode: '', street: ''};
+  invoiceForm: FormGroup;
+  
+  contractor: Contractor = { name: '', nip: '', city: '', postalCode: '', street: ''};
+  vendor: Contractor = { name: '', nip: '', city: '', postalCode: '', street: ''};
   invoice: Invoice;
   documentTypes: DocumentType[];
   paymentStatuses: PaymentStatus[];
   paymentTypes: PaymentType[];
 
-  constructor(private invoiceService: InvoiceService, private router: Router) { }
+  constructor(private invoiceService: InvoiceService, private router: Router,
+              private pdfService: PdfService) { }
 
   ngOnInit(): void {
-    this.invoice = new Invoice( -1, -1, '', new Date(), new Date(), '',
+    this.InitForm();
+  }
+
+  InitForm() {
+    this.invoice = new Invoice( -1, '', new Date(), new Date(), '',
                                new Array(), this.contractor, this.vendor, false, 0.00, 0.00, 1, '0', 1);
     this.invoice.services.push(EMPTY_ROW);
     this.invoiceService.getDocumentTypes().subscribe(dt => {
@@ -45,14 +53,18 @@ export class NewInvoiceComponent implements OnInit {
     });
   }
 
-  createInvoice() {
+  createInvoice(form: NgForm) {
     this.invoiceService.createInvoice(this.invoice);
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/invoices-list');
+  }
+
+  createPDF() {
+    this.pdfService.generatePDF(this.invoice);
   }
 
   addNewServicePosition() {
-    this.invoice.services.push({ invoiceID: -1, serviceName: '', JM: 'szt.', quantity: 1, netPrice: 0.00,
-    netWorth: 0.00, vatRate: '23%', vatAmount: 0, grossValue: 0.00 , invoiceRowServiceID: -1});
+    this.invoice.services.push({ serviceName: '', JM: 'szt.', quantity: 1, netPrice: 0.00,
+    netWorth: 0.00, vatRate: '23%', vatAmount: 0, grossValue: 0.00 });
     this.table.renderRows();
   }
 
@@ -92,15 +104,15 @@ export class NewInvoiceComponent implements OnInit {
     let sumNet = 0;
     this.invoice.services.forEach(function(record) {
       sumGross += record.grossValue;
-      sumNet = record.netWorth;
+      sumNet += record.netWorth;
     });
     this.invoice.sumGrossValue = sumGross;
     this.invoice.sumNetValue = sumNet;
   }
 }
 
-const EMPTY_ROW: InvoiceRowService = { invoiceRowServiceID: -1, serviceName: '', JM: 'szt.', quantity: 1, netPrice: 0.00,
-netWorth: 0.00, vatRate: '23%', vatAmount: 0, grossValue: 0.00 , invoiceID: -1};
+const EMPTY_ROW: InvoiceRowService = { serviceName: '', JM: 'szt.', quantity: 1, netPrice: 0.00,
+netWorth: 0.00, vatRate: '23%', vatAmount: 0, grossValue: 0.00 };
 
 
 

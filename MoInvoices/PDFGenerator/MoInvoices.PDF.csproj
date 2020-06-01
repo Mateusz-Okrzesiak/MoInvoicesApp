@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DinkToPdf" Version="1.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MoInvoices.Data\MoInvoices.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="RazorLight">
+      <HintPath>..\..\..\..\..\..\.nuget\packages\razorlight\2.0.0-beta1\lib\netstandard2.0\RazorLight.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

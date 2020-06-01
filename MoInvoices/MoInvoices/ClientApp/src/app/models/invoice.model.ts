@@ -3,7 +3,7 @@ import { InvoiceRowService } from "../interfaces/InvoiceRowService";
 import { PaymentType } from "../interfaces/paymentType";
 
   export class Invoice {
-    invoiceID: number;
+    invoiceID?: number;
     documentTypeID: number;
     invoiceNumber: string;
     sellDate: Date;
@@ -21,10 +21,10 @@ import { PaymentType } from "../interfaces/paymentType";
     paymentStatusID: number;
     paymentTypeID: number;
 
-    constructor(invoiceID: number, documentTypeID: number, invoiceNumber: string,
+    constructor(documentTypeID: number, invoiceNumber: string,
                 sellData: Date, issueDate: Date, cityOfIssue: string, services: InvoiceRowService [],
                 purchaser: Contractor, vendor: Contractor, isPayed: Boolean, sumGrossValue: number,
-                sumNetValue: number, userID: number, accountNR: string, paymentStatusID: number) {
+                sumNetValue: number, userID: number, accountNR: string, paymentStatusID: number, invoiceID?: number,) {
                    this.invoiceID = invoiceID;
                    this.documentTypeID = documentTypeID;
                    this.invoiceNumber = invoiceNumber;

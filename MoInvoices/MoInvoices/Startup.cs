@@ -1,7 +1,10 @@
 using AutoMapper;
+using DinkToPdf;
+using DinkToPdf.Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -10,6 +13,11 @@ using Microsoft.Extensions.Hosting;
 using MoInvoices.Core;
 using MoInvoices.Core.Customer;
 using MoInvoices.Pages;
+using MoInvoices.Web.Utility;
+using RazorLight;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace MoInvoices
 {
@@ -28,10 +36,21 @@ namespace MoInvoices
             services.AddDbContext<MoInvoiceContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DevConnection")).UseLazyLoadingProxies());
 
-            services.AddAutoMapper(typeof(MoInvoices.Mappings.MappingProfile).Assembly);
+            services.AddAutoMapper(typeof(Mappings.MappingProfile).Assembly);
             services.AddScoped<IInvoiceService, InvoiceService>();
             services.AddScoped<ICustomerService, CustomerService>();
 
+            services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+
+            var processSuffix = "32bit";
+            if (Environment.Is64BitProcess && IntPtr.Size == 8)
+            {
+                processSuffix = "64bit";
+            }
+            var context = new CustomAssemblyLoadContext();
+            context.LoadUnmanagedLibrary(Path.Combine(Directory.GetCurrentDirectory(), $"PDFNative\\{processSuffix}\\libwkhtmltox.dll"));
+
+            services.AddScoped<IPDFService, PDFService>();
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -43,8 +62,6 @@ namespace MoInvoices
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

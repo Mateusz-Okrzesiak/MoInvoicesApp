@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using MoInvoices.Core.Customer;
 using MoInvoices.Data.DTO;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace MoInvoices.Web.Controllers
 {
     [Route("[controller]")]
@@ -22,12 +20,6 @@ namespace MoInvoices.Web.Controllers
         }
 
         #region REST
-        // GET: api/<Customer>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
 
         // GET api/<Customer>/5
         [HttpGet("{id}")]

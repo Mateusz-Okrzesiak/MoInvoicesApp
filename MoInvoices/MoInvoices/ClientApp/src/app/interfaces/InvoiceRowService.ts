@@ -1,6 +1,6 @@
 
 export interface InvoiceRowService {
-    invoiceRowServiceID: number;
+    invoiceRowServiceID?: number;
     serviceName: string;
     JM: string;
     quantity: number;
@@ -9,5 +9,5 @@ export interface InvoiceRowService {
     vatRate: string;
     vatAmount: number;
     grossValue: number;
-    invoiceID: number;
+    invoiceID?: number;
   }

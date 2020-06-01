@@ -1,5 +1,5 @@
 export interface Contractor {
-    contractorID: number;
+    contractorID?: number;
     name: string;
     nip: string;
     street: string;
