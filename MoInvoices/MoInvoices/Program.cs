@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace MoInvoices
 {
+
     public class Program
     {
         public static void Main(string[] args)

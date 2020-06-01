@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Customer } from 'src/app/models/Customer.model';
 import { FormGroup, FormBuilder, NgForm } from '@angular/forms';
 import { CustomerService } from 'src/app/services/customer.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-customers',
@@ -16,15 +16,16 @@ export class CustomerComponent implements OnInit {
   editMode: Boolean = false;
 
   constructor(private customerService: CustomerService,
-              private route: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.initForm();
   }
 
   initForm() {
-    const id = +this.route.snapshot.paramMap.get('customerID');
-    this.editMode = (this.route.snapshot.url[1].path == "edit");
+    const id = +this.activatedRoute.snapshot.paramMap.get('customerID');
+    this.editMode = (this.activatedRoute.snapshot.url[1].path == "edit");
 
     if (this.editMode) {
       this.customerService.getCustomer(id).subscribe(c => {
@@ -38,6 +39,7 @@ export class CustomerComponent implements OnInit {
   addCustomer(form: NgForm) {
     this.customerService.createCustomer(this.customer).subscribe(() => {
       form.resetForm();
+      this.router.navigateByUrl('/customer-list');
     });
   }
 

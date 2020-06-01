@@ -39,25 +39,15 @@ namespace MoInvoices.Core
             try
             {
                 var newInvoice = _mapper.Map<Invoice>(invoice);
-
-                _context.Invoice.Add(newInvoice);
-                _context.SaveChanges();
-
-                foreach (var row in invoice.Services)
-                {
-                    var invoiceRowService = _mapper.Map<InvoiceRowService>(row);
-                    invoiceRowService.InvoiceID = newInvoice.InvoiceID;
-                    _context.InvoiceRowService.Add(invoiceRowService);
-                }
-
                 Contractor purchaser = _mapper.Map<Contractor>(invoice.Purchaser);
                 Contractor vendor = _mapper.Map<Contractor>(invoice.Vendor);
-
                 purchaser.ContractorTypeID = (int)Enum.ContractorType.Purchaser;
                 vendor.ContractorTypeID = (int)Enum.ContractorType.Vendor;
+    
+                newInvoice.Contractors.Add(purchaser);
+                newInvoice.Contractors.Add(vendor);
 
-                _context.Contractor.Add(purchaser);
-                _context.Contractor.Add(vendor);
+                _context.Invoice.Add(newInvoice);
                 _context.SaveChanges();
             }
             catch (Exception ex)
@@ -69,7 +59,6 @@ namespace MoInvoices.Core
         {
             var invoice = _context.Invoice.SingleOrDefault(i => i.InvoiceID.Equals(editInvoice.InvoiceID));
             invoice = _mapper.Map<Invoice>(editInvoice);
-         //   invoice.Contractors = editInvoice.Purchaser;
 
             _context.Update(invoice);
             _context.SaveChanges();

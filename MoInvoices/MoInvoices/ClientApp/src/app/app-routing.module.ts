@@ -13,7 +13,7 @@ const routes: Routes = [
     { path: 'customer-list', component: CustomersListComponent },
     { path: 'customer/edit/:customerID', component: CustomerComponent },
     { path: 'customer/add', component: CustomerComponent },
-    { path: 'invoice/add', component: NewInvoiceComponent },
+    { path: 'new-invoice', component: NewInvoiceComponent },
     { path: 'invoice/edit/:invoiceID', component: EditInvoiceComponent },
 
     { path: 'home', component: HomeComponent }

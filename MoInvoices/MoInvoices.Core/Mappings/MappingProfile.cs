@@ -12,18 +12,18 @@ namespace MoInvoices.Mappings
         public MappingProfile()
         {
             #region mapping invoice
-            //CreateMap<InvoiceDTO, Invoice>()
-            //    .ForMember(dest => dest.InvoiceID, opt => opt.MapFrom(src => src.InvoiceID))
-            //    .ForMember(dest => dest.InvoiceNumber, opt => opt.MapFrom(src => src.InvoiceNumber))
-            //    .ForMember(dest => dest.CityOfIssue, opt => opt.MapFrom(src => src.CityOfIssue))
-            //    .ForMember(dest => dest.IsPayed, opt => opt.MapFrom(src => src.IsPayed))
-            //    .ForMember(dest => dest.DocumentType, opt => opt.MapFrom(src => src.DocumentType))
-            //    .ForMember(dest => dest.IssueDate, opt => opt.MapFrom(src => src.IssueDate))
-            //    .ForMember(dest => dest.SellData, opt => opt.MapFrom(src => src.SellData))
-            //    .ForMember(dest => dest.SumGrossValue, opt => opt.MapFrom(src => src.SumGrossValue))
-            //    .ForMember(dest => dest.SumNetValue, opt => opt.MapFrom(src => src.SumNetValue))
-            //    .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
-            //    .ForMember(dest => dest.InvoiceRowServices, opt => opt.MapFrom(src => src.Service));             
+            CreateMap<InvoiceDTO, Invoice>()
+                .ForMember(dest => dest.InvoiceID, opt => opt.MapFrom(src => src.InvoiceID))
+                .ForMember(dest => dest.InvoiceNumber, opt => opt.MapFrom(src => src.InvoiceNumber))
+                .ForMember(dest => dest.CityOfIssue, opt => opt.MapFrom(src => src.CityOfIssue))
+                .ForMember(dest => dest.IsPayed, opt => opt.MapFrom(src => src.IsPayed))
+                .ForMember(dest => dest.DocumentTypeID, opt => opt.MapFrom(src => src.DocumentTypeID))
+                .ForMember(dest => dest.IssueDate, opt => opt.MapFrom(src => src.IssueDate))
+                .ForMember(dest => dest.SellDate, opt => opt.MapFrom(src => src.SellDate))
+                .ForMember(dest => dest.SumGrossValue, opt => opt.MapFrom(src => src.SumGrossValue))
+                .ForMember(dest => dest.SumNetValue, opt => opt.MapFrom(src => src.SumNetValue))
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
+                .ForMember(dest => dest.InvoiceRowServices, opt => opt.MapFrom(src => src.Services));
 
             CreateMap<Invoice, InvoiceDTO>()
                 .ForMember(dest => dest.InvoiceID, opt => opt.MapFrom(src => src.InvoiceID))
@@ -38,8 +38,7 @@ namespace MoInvoices.Mappings
                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
                 .ForMember(dest => dest.Services, opt => opt.MapFrom(src => src.InvoiceRowServices))
                 .ForMember(dest => dest.Purchaser, opt => opt.MapFrom(src => src.Contractors.Where(i => i.ContractorTypeID == (int)Enum.ContractorType.Purchaser).SingleOrDefault()))
-                .ForMember(dest => dest.Vendor, opt => opt.MapFrom(src => src.Contractors.Where(i => i.ContractorTypeID == (int)Enum.ContractorType.Vendor).SingleOrDefault()))
-                .ReverseMap();          
+                .ForMember(dest => dest.Vendor, opt => opt.MapFrom(src => src.Contractors.Where(i => i.ContractorTypeID == (int)Enum.ContractorType.Vendor).SingleOrDefault()));         
 
 
 

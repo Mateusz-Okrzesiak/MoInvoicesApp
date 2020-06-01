@@ -3,3 +3,6 @@
 ################################################################################
 
 /MoInvoices/MoInvoices.Data/obj/Debug/netcoreapp3.1
+/MoInvoices/PDFGenerator/obj/Debug/netcoreapp3.1
+/MoInvoices/PDFGenerator/obj
+/MoInvoices/PDFGenerator/bin/Debug/netcoreapp3.1

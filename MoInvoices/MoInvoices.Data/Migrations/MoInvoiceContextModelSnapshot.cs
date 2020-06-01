@@ -19,43 +19,6 @@ namespace MoInvoices.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MoInvoices.Data.Models.Customer", b =>
-                {
-                    b.Property<int>("CustomerID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CustomerName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NIP")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PostalCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Street")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
-
-                    b.HasKey("CustomerID");
-
-                    b.HasIndex("UserID");
-
-                    b.ToTable("Customer");
-                });
-
             modelBuilder.Entity("MoInvoices.Data.Models.DocumentType", b =>
                 {
                     b.Property<int>("DocumentTypeID")
@@ -157,6 +120,43 @@ namespace MoInvoices.Migrations
                     b.HasKey("ContractorTypeID");
 
                     b.ToTable("ContractorType");
+                });
+
+            modelBuilder.Entity("MoInvoices.Models.Customer", b =>
+                {
+                    b.Property<int>("CustomerID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NIP")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("CustomerID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Customer");
                 });
 
             modelBuilder.Entity("MoInvoices.Models.Invoice", b =>
@@ -262,20 +262,20 @@ namespace MoInvoices.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("MoInvoices.Data.Models.Customer", b =>
-                {
-                    b.HasOne("MoInvoices.Models.User", "User")
-                        .WithMany("Customers")
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("MoInvoices.Models.Contractor", b =>
                 {
                     b.HasOne("MoInvoices.Models.Invoice", "Invoice")
                         .WithMany("Contractors")
                         .HasForeignKey("InvoiceID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MoInvoices.Models.Customer", b =>
+                {
+                    b.HasOne("MoInvoices.Models.User", "User")
+                        .WithMany("Customers")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
