@@ -24,12 +24,13 @@ export class EditInvoiceComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.invoiceService.getInvoice(+this.route.snapshot.paramMap.get('invoiceID')).subscribe(invoice => {
-       this.currentInvoice = invoice;
+
+       this.invoiceService.getDocumentTypes().subscribe(dt => {
+        this.documentTypes = dt;
+        this.invoiceService.getInvoice(+this.route.snapshot.paramMap.get('invoiceID')).subscribe(invoice => {
+          this.currentInvoice = invoice;
+        });
       });
-    this.invoiceService.getDocumentTypes().subscribe(dt => {
-      this.documentTypes = dt;
-    });
   }
 
   updateInvoice() {

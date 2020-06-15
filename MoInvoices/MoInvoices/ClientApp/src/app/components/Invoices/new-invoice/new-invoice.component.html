@@ -116,7 +116,7 @@
                 <div class="row">
                     <mat-label class="col-md-3 col-sm line-height">Miasto / kod</mat-label>
                     <mat-form-field class="col-md-6 col-sm">
-                        <input matInput required [(ngModel)]="invoice.purchaser.city"  name="pCity">
+                        <input matInput required [(ngModel)]="invoice.purchaser.city" name="pCity">
                     </mat-form-field>
                     <mat-form-field class="col-md-3 col-sm">
                         <input matInput required [(ngModel)]="invoice.purchaser.postalCode" name="pPostalCode">
@@ -276,7 +276,7 @@
                 <button mat-raised-button color="warn" type="submit" [disabled]="!invoiceForm.form.valid">Zapisz</button>  
             </div>     
             <div class="col-md-2">   
-                <button mat-raised-button color="warn" type="button" (click)=createPDF()>Pobierz PDF</button>
+                <button mat-raised-button color="warn" type="button" [disabled]="!invoiceForm.form.valid" (click)=createPDF()>Pobierz PDF</button>
             </div>
         </div>
     </div>
