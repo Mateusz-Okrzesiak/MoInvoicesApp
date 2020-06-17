@@ -27,6 +27,14 @@ namespace MoInvoices.Models
         public decimal SumGrossValue { get; set; }
         [Required]
         public decimal SumNetValue { get; set; }
+        [Required]
+        public string AccountNR { get; set; }
+        [Required]
+        public DateTime PaymentDate { get; set; }
+        [Required]
+        public int PaymentStatusID { get; set; }
+        [Required]
+        public int PaymentTypeID { get; set; }
         [ForeignKey("User")]
         public int UserId { get; set; }
         public virtual User User { get; set; }

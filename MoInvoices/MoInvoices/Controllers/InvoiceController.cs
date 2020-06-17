@@ -34,7 +34,6 @@ namespace MoInvoices.Controllers
             this._invoiceService.AddNewInvoice(invoice);
         }
 
-        // PUT api/<InvoiceController>/5
         [HttpPut]
         public void Put([FromBody] InvoiceDTO invoice)
         {

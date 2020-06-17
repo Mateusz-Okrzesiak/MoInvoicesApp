@@ -1,6 +1,7 @@
 import { Contractor } from "../interfaces/contractor";
 import { InvoiceRowService } from "../interfaces/InvoiceRowService";
 import { PaymentType } from "../interfaces/paymentType";
+import { NgForm } from "@angular/forms";
 
   export class Invoice {
     invoiceID?: number;
@@ -24,7 +25,8 @@ import { PaymentType } from "../interfaces/paymentType";
     constructor(documentTypeID: number, invoiceNumber: string,
                 sellData: Date, issueDate: Date, cityOfIssue: string, services: InvoiceRowService [],
                 purchaser: Contractor, vendor: Contractor, isPayed: Boolean, sumGrossValue: number,
-                sumNetValue: number, userID: number, accountNR: string, paymentStatusID: number, invoiceID?: number,) {
+                sumNetValue: number, userID: number, accountNR: string, paymentStatusID: number,
+                paymentTypeID: number, paymentDate: Date,  invoiceID?: number) {
                    this.invoiceID = invoiceID;
                    this.documentTypeID = documentTypeID;
                    this.invoiceNumber = invoiceNumber;
@@ -40,6 +42,8 @@ import { PaymentType } from "../interfaces/paymentType";
                    this.userID = userID;
                    this.accountNR = accountNR;
                    this.paymentStatusID = paymentStatusID;
+                   this.paymentTypeID = paymentTypeID;
+                   this.paymentDate = paymentDate;
                  }
 
   }

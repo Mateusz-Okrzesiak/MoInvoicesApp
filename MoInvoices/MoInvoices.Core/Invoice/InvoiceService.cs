@@ -55,12 +55,10 @@ namespace MoInvoices.Core
             }
         }
 
-        public void UpdateInvoice(InvoiceDTO editInvoice)
+        public void UpdateInvoice(InvoiceDTO editedInvoice)
         {
-            var invoice = _context.Invoice.SingleOrDefault(i => i.InvoiceID.Equals(editInvoice.InvoiceID));
-            invoice = _mapper.Map<Invoice>(editInvoice);
-
-            _context.Update(invoice);
+            var invoice = _mapper.Map<Invoice>(editedInvoice);
+            _context.Entry(invoice).State = EntityState.Modified;
             _context.SaveChanges();
         }
 
@@ -81,7 +79,7 @@ namespace MoInvoices.Core
         public IEnumerable<InvoiceListDTO> GetAllUserInvoices(int userID)
         {
             var invoiceList = _context.Invoice.Where(u => u.UserId.Equals(userID))
-                                          .Select(x => _mapper.Map<InvoiceListDTO>(x));
+                                              .Select(x => _mapper.Map<InvoiceListDTO>(x));
        
             return invoiceList;
         }

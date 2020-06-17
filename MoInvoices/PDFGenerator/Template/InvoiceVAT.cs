@@ -59,19 +59,9 @@ td {{ padding: 4px; margin: 0px; font-size:12pt; line-height: 1.2; }}.title {{ t
                 </td>
             </tr>
         </tbody>
-</table>
-                                <table align='center'>
-                                    <tr>
-                                        <th>Nazwa</th>
-                                        <th>Jm.</th>
-                                        <th>Ilość</th>
-                                        <th>Cena Netto</th>
-                                        <th>Wartość Netto</th>
-                                        <th>Stawka Vat</th>
-                                        <th>Kwota VAT</th>
-                                        <th>Wartość brutto</th>
-                                    </tr>", invoice.CityOfIssue, invoice.IssueDate.ToShortDateString(), invoice.SellDate.ToShortDateString());
-            sb.AppendFormat(@"<table width='100%' cellpadding='0' cellspacing='0'>
+</table>", invoice.CityOfIssue, invoice.IssueDate.ToShortDateString(), invoice.SellDate.ToShortDateString());
+            sb.AppendFormat(@"
+<table width='100%' cellpadding='0' cellspacing='0'>
     <tbody>
     <tr>
         <td width='46%' valign='top'>
@@ -103,9 +93,21 @@ td {{ padding: 4px; margin: 0px; font-size:12pt; line-height: 1.2; }}.title {{ t
                 <br>{7}
                 <br>{8}
                     </td></tr></tbody></table></td></tr></tbody></table>", invoice.Purchaser.Name, invoice.Purchaser.NIP, invoice.Purchaser.Street, invoice.Purchaser.PostalCode, invoice.Purchaser.City, invoice.Vendor.Name, invoice.Vendor.NIP, invoice.Vendor.Street, invoice.Vendor.PostalCode, invoice.Vendor.City);
+
+            sb.Append(@"<table align='center'>
+                                    <tr>
+                                        <th>Nazwa</th>
+                                        <th>Jm.</th>
+                                        <th>Ilość</th>
+                                        <th>Cena Netto</th>
+                                        <th>Wartość Netto</th>
+                                        <th>Stawka Vat</th>
+                                        <th>Kwota VAT</th>
+                                        <th>Wartość brutto</th>
+                                    </tr>");
             foreach (var row in invoice.Services)
             {
-                sb.AppendFormat(@" <tr>
+                sb.AppendFormat(@"<tr>
                                     <td>{0}</td>
                                     <td>{1}</td>
                                     <td>{2}</td>
@@ -113,13 +115,10 @@ td {{ padding: 4px; margin: 0px; font-size:12pt; line-height: 1.2; }}.title {{ t
                                     <td>{4}</td>
                                     <td>{5}</td>
                                     <td>{6}</td>
-                                  </tr>", row.ServiceName, row.JM, row.NetPrice, row.NetWorth, row.VatRate, row.VatAmount, row.GrossValue);
-            }
-
-            sb.Append(@"
-                                </table>
+                                  </tr></table>
                             </body>
-                        </html>");
+                        </html>", row.ServiceName, row.JM, row.NetPrice, row.NetWorth, row.VatRate, row.VatAmount, row.GrossValue);
+            }
 
             return Task.FromResult(sb.ToString());
         }

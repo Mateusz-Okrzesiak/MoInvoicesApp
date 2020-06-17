@@ -13,7 +13,7 @@ export class InvoiceService {
 
   createInvoice(invoice: Invoice) {
     invoice.userID = 1;
-    this.httpClient.post<Invoice>(this.baseUrl + 'invoice', invoice).subscribe();
+    return this.httpClient.post<Invoice>(this.baseUrl + 'invoice', invoice);
   }
 
   getInvoice(invoiceID: number) {
@@ -25,8 +25,7 @@ export class InvoiceService {
   }
 
   updateInvoice(invoice: Invoice) {
-    invoice.userID = 1;
-    this.httpClient.put<Invoice>(this.baseUrl + 'invoice', invoice).subscribe();
+    return this.httpClient.put(this.baseUrl + 'invoice', invoice);
   }
 
   getAllUserInvoices() {

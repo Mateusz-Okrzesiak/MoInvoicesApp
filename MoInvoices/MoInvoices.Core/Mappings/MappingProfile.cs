@@ -22,7 +22,7 @@ namespace MoInvoices.Mappings
                 .ForMember(dest => dest.SellDate, opt => opt.MapFrom(src => src.SellDate))
                 .ForMember(dest => dest.SumGrossValue, opt => opt.MapFrom(src => src.SumGrossValue))
                 .ForMember(dest => dest.SumNetValue, opt => opt.MapFrom(src => src.SumNetValue))
-                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserID))
                 .ForMember(dest => dest.InvoiceRowServices, opt => opt.MapFrom(src => src.Services));
 
             CreateMap<Invoice, InvoiceDTO>()
@@ -35,7 +35,7 @@ namespace MoInvoices.Mappings
                 .ForMember(dest => dest.SellDate, opt => opt.MapFrom(src => src.SellDate))
                 .ForMember(dest => dest.SumGrossValue, opt => opt.MapFrom(src => src.SumGrossValue))
                 .ForMember(dest => dest.SumNetValue, opt => opt.MapFrom(src => src.SumNetValue))
-                .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.UserId))
+                .ForMember(dest => dest.UserID, opt => opt.MapFrom(src => src.UserId))
                 .ForMember(dest => dest.Services, opt => opt.MapFrom(src => src.InvoiceRowServices))
                 .ForMember(dest => dest.Purchaser, opt => opt.MapFrom(src => src.Contractors.Where(i => i.ContractorTypeID == (int)Enum.ContractorType.Purchaser).SingleOrDefault()))
                 .ForMember(dest => dest.Vendor, opt => opt.MapFrom(src => src.Contractors.Where(i => i.ContractorTypeID == (int)Enum.ContractorType.Vendor).SingleOrDefault()));         

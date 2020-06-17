@@ -7,7 +7,7 @@ namespace MoInvoices.DTO
 {
     public class InvoiceDTO
     {
-        public int InvoiceID { get; set; }
+        public int? InvoiceID { get; set; }
         public int DocumentTypeID { get; set; }
         public string InvoiceNumber { get; set; }
         public DateTime SellDate { get; set; }
@@ -19,6 +19,10 @@ namespace MoInvoices.DTO
         public bool IsPayed { get; set; }
         public decimal SumGrossValue { get; set; }
         public decimal SumNetValue { get; set; }
-        public int UserId { get; set; }
+        public string AccountNR { get; set; }
+        public DateTime PaymentDate { get; set; }
+        public int PaymentStatusID { get; set; }
+        public int PaymentTypeID { get; set; }
+        public int UserID { get; set; }
     }
 }

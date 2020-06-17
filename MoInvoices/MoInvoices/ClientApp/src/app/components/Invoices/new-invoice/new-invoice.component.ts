@@ -23,7 +23,7 @@ export class NewInvoiceComponent implements OnInit {
   @ViewChild(MatTable) table: MatTable<any>;
   displayedColumns: string[] = ['delete', 'serviceName', 'JM', 'quantity', 'netPrice', 'netWorth', 'vatRate', 'vatAmount', 'grossValue'];
   invoiceForm: FormGroup;
-  
+
   contractor: Contractor = { name: '', nip: '', city: '', postalCode: '', street: ''};
   vendor: Contractor = { name: '', nip: '', city: '', postalCode: '', street: ''};
   invoice: Invoice;
@@ -35,12 +35,12 @@ export class NewInvoiceComponent implements OnInit {
               private pdfService: PdfService) { }
 
   ngOnInit(): void {
-    this.InitForm();
+    this.initForm();
   }
 
-  InitForm() {
+  initForm() {
     this.invoice = new Invoice( -1, '', new Date(), new Date(), '',
-                               new Array(), this.contractor, this.vendor, false, 0.00, 0.00, 1, '0', 1);
+                               new Array(), this.contractor, this.vendor, false, 0.00, 0.00, 1, '0', 0, 0, new Date());
     this.invoice.services.push(EMPTY_ROW);
     this.invoiceService.getDocumentTypes().subscribe(dt => {
       this.documentTypes = dt;
@@ -54,8 +54,9 @@ export class NewInvoiceComponent implements OnInit {
   }
 
   createInvoice(form: NgForm) {
-    this.invoiceService.createInvoice(this.invoice);
-    this.router.navigateByUrl('/invoices-list');
+    this.invoiceService.createInvoice(this.invoice).subscribe(() =>
+    this.router.navigateByUrl('/invoices-list')
+    );
   }
 
   createPDF() {
@@ -84,7 +85,6 @@ export class NewInvoiceComponent implements OnInit {
   }
 
   updateNetPrice(el: InvoiceRowService, netPrice: number) {
-
     el.netPrice = +netPrice;
     el = this.recalculateService(el);
   }

@@ -5,6 +5,12 @@ import { InvoiceService } from 'src/app/services/invoice.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatTable } from '@angular/material';
 import { InvoiceRowService } from 'src/app/interfaces/InvoiceRowService';
+import { PdfService } from 'src/app/services/pdf.service';
+import { PaymentStatus } from 'src/app/interfaces/paymentStatus';
+import { PaymentType } from 'src/app/interfaces/paymentType';
+import { NgForm } from '@angular/forms';
+import { DataSource } from '@angular/cdk/table';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-edit-invoice',
@@ -15,26 +21,42 @@ import { InvoiceRowService } from 'src/app/interfaces/InvoiceRowService';
 export class EditInvoiceComponent implements OnInit {
 
   @ViewChild(MatTable) table: MatTable<any>;
+
   displayedColumns: string[] = ['serviceName', 'JM', 'quantity', 'netPrice', 'netWorth', 'vatRate', 'vatAmount', 'grossValue'];
+
   currentInvoice: Invoice = null;
   documentTypes: DocumentType[];
+  paymentStatuses: PaymentStatus[];
+  paymentTypes: PaymentType[];
 
   constructor(private invoiceService: InvoiceService,
+              private pdfService: PdfService,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router) {}
 
   ngOnInit() {
+    this.initForm();
+  }
 
-       this.invoiceService.getDocumentTypes().subscribe(dt => {
-        this.documentTypes = dt;
-        this.invoiceService.getInvoice(+this.route.snapshot.paramMap.get('invoiceID')).subscribe(invoice => {
-          this.currentInvoice = invoice;
-        });
-      });
+  initForm() {
+    this.invoiceService.getInvoice(+this.route.snapshot.paramMap.get('invoiceID')).subscribe(invoice => {
+      this.currentInvoice = invoice;
+    });
+    this.invoiceService.getDocumentTypes().subscribe(dt => {
+      this.documentTypes = dt;
+    });
+    this.invoiceService.getPaymentStatuses().subscribe(ps => {
+      this.paymentStatuses = ps;
+    });
+    this.invoiceService.getPaymentTypes().subscribe(pt => {
+      this.paymentTypes = pt;
+    });
   }
 
   updateInvoice() {
-    this.invoiceService.updateInvoice(this.currentInvoice);
+    this.invoiceService.updateInvoice(this.currentInvoice).subscribe(() =>
+    this.router.navigateByUrl('/invoices-list')
+    );
   }
 
   addNewServicePosition() {
@@ -43,8 +65,18 @@ export class EditInvoiceComponent implements OnInit {
     this.table.renderRows();
   }
 
+  removeServicePosition(index: number) {
+    this.currentInvoice.services.splice(index, 1);
+    this.table.renderRows();
+    this.recalculateInvoice();
+  }
+
   updateServiceName(el: InvoiceRowService, serviceName: string) {
     el.serviceName = serviceName;
+  }
+
+  createPDF() {
+    this.pdfService.generatePDF(this.currentInvoice);
   }
 
   updateQuantity(el: InvoiceRowService, quantity: number) {

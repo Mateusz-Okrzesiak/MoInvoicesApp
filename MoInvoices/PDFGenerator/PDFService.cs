@@ -24,9 +24,6 @@ namespace MoInvoices.Web.Utility
         }
         public async Task<byte[]> Create(InvoiceDTO invoice)
         {
-            try
-            {
-
                 var templatePath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), $"Pages/test.cshtml");
                 string template = await InvoiceVAT.GetInvoiceVAT(invoice);
 
@@ -58,12 +55,6 @@ namespace MoInvoices.Web.Utility
                 byte[] file = _pdfConverter.Convert(pdf);
 
                 return file;
-            }
-            catch(Exception ex)
-            {
-                var test = ex;
-                return null;
-            }
         }
 
         //public GlobalSettings SetGlobalSettings()
