@@ -14,7 +14,10 @@
             </button>
             <button mat-icon-button routerLink="/invoice/edit/{{ element.invoiceID }}">
                 <mat-icon color="primary">edit</mat-icon>
-            </button>                  
+            </button>
+            <button mat-icon-button (click)=createPDF(element.invoiceID)>
+                <mat-icon color="primary">picture_as_pdf</mat-icon>
+            </button>                     
         </td>
         </ng-container>
     

@@ -90,9 +90,9 @@ td {{ padding: 4px; margin: 0px; font-size:12pt; line-height: 1.2; }}.title {{ t
             <tr>
                 <td class='body1'>{5}
                 <br>NIP: {6}
-                <br>{7}
-                <br>{8}
-                    </td></tr></tbody></table></td></tr></tbody></table>", invoice.Purchaser.Name, invoice.Purchaser.NIP, invoice.Purchaser.Street, invoice.Purchaser.PostalCode, invoice.Purchaser.City, invoice.Vendor.Name, invoice.Vendor.NIP, invoice.Vendor.Street, invoice.Vendor.PostalCode, invoice.Vendor.City);
+                <br>ul. {7}
+                <br>{8} {8}
+                    </td></tr></tbody></table></td></tr></tbody></table>", invoice.Vendor.Name, invoice.Vendor.NIP, invoice.Vendor.Street, invoice.Vendor.PostalCode, invoice.Vendor.City, invoice.Purchaser.Name, invoice.Purchaser.NIP, invoice.Purchaser.Street, invoice.Purchaser.PostalCode, invoice.Purchaser.City);
 
             sb.Append(@"<table align='center'>
                                     <tr>

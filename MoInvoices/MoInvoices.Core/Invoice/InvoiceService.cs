@@ -18,7 +18,6 @@ namespace MoInvoices.Core
         InvoiceDTO GetInvoice(int invoiceID);
         IEnumerable<InvoiceListDTO> GetAllUserInvoices(int userID);
 
-
         IEnumerable<DocumentType> GetDocumentTypes();
         IEnumerable<PaymentType> GetPaymentTypes();
         IEnumerable<PaymentStatus> GetPaymentStatuses();
@@ -58,8 +57,16 @@ namespace MoInvoices.Core
         public void UpdateInvoice(InvoiceDTO editedInvoice)
         {
             var invoice = _mapper.Map<Invoice>(editedInvoice);
+            // Aktualizacja usług na fakturze
+            var editedIRSIds = editedInvoice.Services.Select(s => s.InvoiceRowServiceID);
+            var services = GetAllServices(invoice.InvoiceID);
+            var irs2remove = services.Where(s => !editedIRSIds.Contains(s.InvoiceRowServiceID)).Select(x => _mapper.Map<InvoiceRowService>(x));
+
             _context.Entry(invoice).State = EntityState.Modified;
             _context.SaveChanges();
+
+            foreach (var irs in irs2remove)
+                DeleteInvoiceRowService(irs);
         }
 
         public void DeleteInvoice(int id)
@@ -82,6 +89,20 @@ namespace MoInvoices.Core
                                               .Select(x => _mapper.Map<InvoiceListDTO>(x));
        
             return invoiceList;
+        }
+
+        private List<InvoiceRowService> GetAllServices(int invoiceID)
+        {
+            var services = _context.InvoiceRowService.Where(s => s.InvoiceID.Equals(invoiceID)).ToList();
+            
+            return services;
+        }
+
+        private void DeleteInvoiceRowService(InvoiceRowService invoiceRowService)
+        {
+            _context.Remove(invoiceRowService);
+
+            _context.SaveChanges();
         }
 
 

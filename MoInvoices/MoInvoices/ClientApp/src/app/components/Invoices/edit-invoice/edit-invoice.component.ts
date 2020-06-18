@@ -22,7 +22,7 @@ export class EditInvoiceComponent implements OnInit {
 
   @ViewChild(MatTable) table: MatTable<any>;
 
-  displayedColumns: string[] = ['serviceName', 'JM', 'quantity', 'netPrice', 'netWorth', 'vatRate', 'vatAmount', 'grossValue'];
+  displayedColumns: string[] = ['delete', 'serviceName', 'JM', 'quantity', 'netPrice', 'netWorth', 'vatRate', 'vatAmount', 'grossValue'];
 
   currentInvoice: Invoice = null;
   documentTypes: DocumentType[];

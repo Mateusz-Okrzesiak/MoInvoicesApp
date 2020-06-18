@@ -3,6 +3,7 @@ import { StringifyOptions } from 'querystring';
 import { InvoiceService } from 'src/app/services/invoice.service';
 import { InvoiceList } from 'src/app/interfaces/InvoiceList';
 import { MatTable } from '@angular/material';
+import { PdfService } from 'src/app/services/pdf.service';
 
 @Component({
   selector: 'app-invoices-list',
@@ -15,7 +16,7 @@ export class InvoicesListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'documentType', 'invoiceNumber', 'purchaserName', 'issueDate', 'grossValue'];
   invoiceList: InvoiceList[];
 
-  constructor(private invoiceService: InvoiceService) { }
+  constructor(private invoiceService: InvoiceService, private pdfService: PdfService) { }
 
   ngOnInit(): void {
     this.invoiceService.getAllUserInvoices().subscribe(response => {
@@ -27,6 +28,10 @@ export class InvoicesListComponent implements OnInit {
       this.invoiceList = this.invoiceList.filter(i => i.invoiceID !== id);
       this.invoiceTable.renderRows();
     });
+  }
+
+  createPDF(invoiceID: number) {
+    this.pdfService.generatePDFbyID(invoiceID);
   }
 }
 

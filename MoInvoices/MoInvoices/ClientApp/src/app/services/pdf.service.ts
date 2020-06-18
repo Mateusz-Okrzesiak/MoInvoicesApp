@@ -20,4 +20,16 @@ export class PdfService {
       }
     );
   }
+  
+  generatePDFbyID(invoiceID: number): any {
+    const mediaType = 'application/pdf';
+    this.httpClient.get(this.baseUrl + `Pdf/${invoiceID}`, { responseType: 'blob'} ).subscribe(
+      data => {
+        const file = new Blob([data], {type: mediaType});
+        const fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
+      }
+    );
+  }
+
 }
